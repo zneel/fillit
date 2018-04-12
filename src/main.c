@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/12 23:10:21 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/12 23:10:45 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		ft_display_usage_no_file();
 	if ((fd = open(file, O_RDONLY | O_APPEND) < 0))
-        ft_exit_error();
+		ft_exit_error();
 	ft_readf(argv[1], fd);
 	return (0);
 }
