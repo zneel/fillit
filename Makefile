@@ -6,7 +6,7 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/12 17:33:40 by ebouvier          #+#    #+#              #
-#    Updated: 2018/04/13 17:49:24 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/04/13 21:17:45 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SRC_DIR			=	src
 SRC_BASE		=	main.c			\
 					parse.c			\
 					error.c			\
-					init.c			\
-					list.c
+					helpers.c		\
+					solve.c
 
 OBJ_DIR			=	obj
 

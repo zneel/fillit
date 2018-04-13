@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:40:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/13 17:45:59 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 21:20:47 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ inline void	ft_display_usage_too_mny_args(void)
 
 inline void	ft_exit_invalid_piece(void)
 {
-	ft_putstr("\033[31mInvalid tetriminos\n");
+	ft_putstr(NOT_VALID_TTRIS);
 	exit(1);
 }

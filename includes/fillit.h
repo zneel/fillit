@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/13 18:49:29 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 22:04:34 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,26 @@
 # define CHAR_SEP	'\n'
 # define ERR_READ "\033[31mopen failed for some reasons"
 # define USAGE "\033[31musage: ./fillit entry_file\n"
+# define NOT_VALID_TTRIS "error"
 # define TRUE 1
 # define FALSE 0
 
 typedef struct 	s_tris
 {
-	uint16_t 		**coords;
+	uint16_t 		coords[4][2];
 	uint8_t			placed;
 	struct s_tris	*next;
 }				t_tris;
 
-void		ft_tetris_valid(char *buffer);
-void		ft_readfd(int fd);
-void		ft_push_back(t_tris **begin_list, uint16_t **tab);
-t_tris		*ft_create_elem(uint16_t **tab);
-t_tris		*init(char *buffer);
+void    	ft_tetris_valid(char *buff, ssize_t bytes);
+t_tris		*ft_readfd(int fd);
+void		ft_push_back(t_tris **begin_list, uint16_t tab[4][2]);
+t_tris		*ft_create_elem(uint16_t tab[4][2]);
+void		ft_push_tetri(char *buffer, t_tris **head, ssize_t bytes);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();
 void		ft_exit_invalid_piece();
+void	    ft_solve(t_tris *tetriminos_list);
+void 		ft_print_list(t_tris *list);
 #endif
