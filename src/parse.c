@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/12 23:10:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 12:09:31 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,41 @@ uint16_t    ft_tetris_valid(t_tris *list)
 t_list		*ft_readfd(char *file, int fd)
 {
 	ssize_t 	bytes;
-	uint8_t 	buff;
+	char 		*buff;
 	uint16_t 	x;
 	uint16_t	y;
-	t_list 	 	*tetris_list;
-
-	while ((bytes = read(fd, &buff, 1) > 0))
+	size_t		i;
+	t_list 	 	*tetris_head;
+	t_list		*tetris_current;
+	
+	while ((bytes = read(fd, &buff, BUFF_SIZE) > 0))
 	{
+		buff[bytes] = 0;
 		tetris_list = (t_list*)malloc(sizeof(t_list));
+		while (*buff)
+		{
+			if (y == 4)
+			{
+				x = 0;
+				y = 0;
+			}
+			else if (*buff == CHAR_SEP)
+			{
+				tetris_list->coords[i++];
+				++y;
+			}
+			else if (*buff == CHAR_TTRIS)
+			{
+				tetris_list->coords[i][0] = x;
+				tetris_list->coords[i][1] = y;
+				++x;
+			}
+			++buff;
+		}
 		if (!tetris_list)
 			return (NULL);
-		if (y == 4)
-		{
-			x = 0;
-			y = 0;
-		}
-		else if (buff == CHAR_SEP)
-			y++;
-		else if (buff == CHAR_TTRIS)
-			x++;
-		tetris_list->coords[0] = 
-		// else if (buff == CHAR_TTRIS)
-		// {
-		//     printf("x: %d y: %d\n", i, y);
-		// }
-		// i++;
+		
 	}
 	close(fd);
-	return (tetris_list);
+	return (tetris_head);
 }

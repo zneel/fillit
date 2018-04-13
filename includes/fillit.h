@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/12 23:10:21 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 11:55:59 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include "libft.h"
 # include <fcntl.h>
 
-# define BUFF_SIZE 4096
+# define TETRI_MAP_H 4
+# define TETRI_MAP_W 4
+# define BUFF_SIZE (TETRI_MAP_H * TETRI_MAP_W + 1)
 # define CHAR_EMPTY '.'
 # define CHAR_TTRIS '#'
 # define CHAR_SEP	'\n'
@@ -29,7 +31,7 @@
 
 typedef struct 	s_tris
 {
-	uint16_t 	coords[8];
+	uint16_t 	coords[4][2];
 	t_list 		*next;
 }				t_tris;
 
