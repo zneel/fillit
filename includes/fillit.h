@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/13 16:47:50 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 18:49:29 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@
 
 typedef struct 	s_tris
 {
-	uint16_t 	coords[4][2];
-	t_list 		*next;
+	uint16_t 		**coords;
+	uint8_t			placed;
+	struct s_tris	*next;
 }				t_tris;
 
 void		ft_tetris_valid(char *buffer);
 void		ft_readfd(int fd);
+void		ft_push_back(t_tris **begin_list, uint16_t **tab);
+t_tris		*ft_create_elem(uint16_t **tab);
+t_tris		*init(char *buffer);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();

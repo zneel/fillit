@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/13 17:33:33 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 18:56:57 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void		ft_readfd(int fd)
 	{
 		buff[bytes] = '\0';
 		ft_tetris_valid(buff);
+		ft_putchar(*buff);
+		init(buff);
 	}
 }

@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/12 21:40:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/13 17:45:59 by ebouvier         ###   ########.fr       */
+/*   Created: 2018/04/13 13:18:42 by srequiem          #+#    #+#             */
+/*   Updated: 2018/04/13 18:48:04 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-inline void	ft_exit_error(void)
+
+void	ft_push_back(t_tris **begin_list, uint16_t **tab)
 {
-	ft_putstr(ERR_READ);
-	exit(1);
+	if (!*begin_list)
+		*begin_list = ft_create_elem(tab);
+	else if (!(*begin_list)->next)
+		(*begin_list)->next = ft_create_elem(tab);
+	else
+		ft_push_back(&(*begin_list)->next, tab);
 }
 
-inline void	ft_display_usage_no_file(void)
+t_tris	*ft_create_elem(uint16_t **tab)
 {
-	ft_putstr(USAGE);
-	exit(1);
-}
+	t_tris	*node;
 
-inline void	ft_display_usage_too_mny_args(void)
-{
-	ft_putstr("\033[31mToo many arguments\n");
-	ft_putstr(USAGE);
-	exit(1);
-}
-
-inline void	ft_exit_invalid_piece(void)
-{
-	ft_putstr("\033[31mInvalid tetriminos\n");
-	exit(1);
+	if (!(node = (t_tris*)malloc(sizeof(*node))))
+		return (0);
+	node->coords = tab;
+	node->placed = 0;
+	node->next = NULL;
+	return (node);
 }
