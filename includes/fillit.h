@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/13 11:55:59 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/13 13:43:02 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ typedef struct 	s_tris
 	t_list 		*next;
 }				t_tris;
 
-uint16_t	ft_tetris_valid()
-void    	ft_readf(char *file);
+void		ft_tetris_valid(char c);
+t_list		*ft_readfd(int fd);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();
-void		ft_invalid_piece();
+void		ft_exit_invalid_piece();
 #endif
