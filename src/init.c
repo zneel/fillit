@@ -6,50 +6,42 @@
 /*   By: srequiem <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:31:44 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/13 13:49:41 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/13 17:33:11 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
 
-void	init(uint16_t **tab, size_t x, size_t y)
+t_tris	*init(char *buffer)
 {
-	int	i;
-	int	j;
+	t_tris 	*head;
+	size_t	i;
+	size_t 	y;
+	size_t	x;
+	uint16_t tab[4][2];
 
-	if (!tab)
-		return ;
+	if (!buffer)
+		return (0);
+	if (!(head = (t_tris*)malloc(sizeof(t_tris))))
+		return (0);
 	i = 0;
-	while (i < x)
+	y = 0;
+	x = 0;
+	while (buffer[i])
 	{
-		j = 0;
-		while (j < y)
+		if (buffer[i] == CHAR_SEP)
 		{
-			tab[i][j] = -1;
-			j++;
+			x = -1;
+			y++;
+		}
+		else if (buffer[i] == CHAR_TTRIS)
+		{
+			tab[y][0] = x;
+			tab[y][1] = y;
 		}
 		i++;
+		x++;
 	}
+	ft_push_back(&head, tab);
+	return (head);
 }
-
-int		main(void)
-{
-	uint16_t	tab[4][2];
-	int 		i;
-	int 		j;
-
-	init(&tab, 4,2);
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 2)
-		{
-			printf("tab[%d][%d] = %d\n", i, j, tab[i][j]);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
