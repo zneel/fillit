@@ -15,10 +15,8 @@
 void ft_print_list(t_tris *list)
 {
     size_t i;
-    size_t j;
 
     i = 0;
-    j = 0;
     while (list)
     {
         while (i < 4)
@@ -28,7 +26,7 @@ void ft_print_list(t_tris *list)
             ft_putchar('\n');
             ft_putstr("coords Y= ");
             ft_putnbr(list->coords[i][1]);
-            ft_putstr("\n\n");
+            ft_putstr("\n");
             ++i;
         }
         i = 0;
@@ -36,7 +34,7 @@ void ft_print_list(t_tris *list)
     }
 }
 
-void	ft_push_back(t_tris **begin_list, uint16_t tab[4][2])
+void	ft_push_back(t_tris **begin_list, uint8_t tab[4][2])
 {
 	t_tris *node;
 	
@@ -55,13 +53,13 @@ void	ft_push_back(t_tris **begin_list, uint16_t tab[4][2])
 	}
 }
 
-t_tris	*ft_create_elem(uint16_t tab[4][2])
+t_tris	*ft_create_elem(uint8_t tab[4][2])
 {
 	t_tris	*node;
 
 	if (!(node = (t_tris*)malloc(sizeof(*node))))
 		return (0);
-	ft_memcpy(node->coords, tab, sizeof(uint16_t) * 8);
+	ft_memcpy(node->coords, tab, sizeof(uint8_t) * 8);
 	node->placed = 0;
 	node->next = NULL;
 	return (node);

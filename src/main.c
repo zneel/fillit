@@ -15,8 +15,8 @@
 int	main(int argc, char **argv)
 {
 	int fd;
-	t_tris *tetriminos;
-	
+	t_tris	*tetriminos;
+
 	if (argc > 2)
 		ft_display_usage_too_mny_args();
 	if (argc < 2)

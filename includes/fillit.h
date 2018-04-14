@@ -31,18 +31,24 @@
 # define TRUE 1
 # define FALSE 0
 
+typedef	struct	s_map
+{
+	uint8_t	map[4][4];
+	uint8_t	complete;
+}				t_map;
+
 typedef struct 	s_tris
 {
-	uint16_t 		coords[4][2];
+	uint8_t 		coords[4][2];
 	uint8_t			placed;
 	struct s_tris	*next;
 }				t_tris;
 
-void    	ft_tetris_valid(char *buff, ssize_t bytes);
+void    	ft_tetris_valid(char *buff);
 t_tris		*ft_readfd(int fd);
-void		ft_push_back(t_tris **begin_list, uint16_t tab[4][2]);
-t_tris		*ft_create_elem(uint16_t tab[4][2]);
-void		ft_push_tetri(char *buffer, t_tris **head, ssize_t bytes);
+void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2]);
+t_tris		*ft_create_elem(uint8_t tab[4][2]);
+void		ft_push_tetri(char *buffer, t_tris **head);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();

@@ -12,7 +12,16 @@
 
 #include "fillit.h"
 
-void    ft_solve(t_tris *tetriminos_list)
+t_map    *ft_solve(t_tris *tetriminos_list)
 {
+    t_map   *map;
+
+    map = (t_map*)malloc(sizeof(t_map));
     (void) tetriminos_list;
+}
+
+
+int    ft_place_tetris(t_map *map)
+{
+    return (0);
 }

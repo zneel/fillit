@@ -12,17 +12,14 @@
 
 #include "fillit.h"
 
-void    ft_tetris_valid(char *buff, ssize_t bytes)
+void    ft_tetris_valid(char *buff)
 {
 	size_t	i;
 	size_t	hash_count;
 
 	i = 0;
 	hash_count = 0;
-	ft_putnbr(bytes);
-	if (bytes > 21)
-		ft_exit_invalid_piece();
-	while (i < (size_t)bytes)
+	while (buff[i])
 	{
 		if (buff[i] == CHAR_TTRIS)
 		{
@@ -35,28 +32,27 @@ void    ft_tetris_valid(char *buff, ssize_t bytes)
 		if (buff[i] != CHAR_SEP && buff[i] != CHAR_TTRIS &&
 			buff[i] != CHAR_EMPTY)
 			ft_exit_invalid_piece();
-		++i;
 		if (i % 5 == 4 && buff[i] != '\n')
 			ft_exit_invalid_piece();
+		++i;			
 	}
 	if (hash_count != 4)
 		ft_exit_invalid_piece();
 }
 
-void	ft_push_tetri(char *buffer, t_tris **head, ssize_t bytes)
+void	ft_push_tetri(char *buffer, t_tris **head)
 {
 	size_t	i;
 	size_t 	y;
 	size_t	x;
 	size_t	piece;
-	uint16_t tab[4][2];
+	uint8_t tab[4][2];
 	
 	y = 0;
 	x = 0;
 	i = 0;
 	piece = 0;
-	buffer[bytes] = '\0';
-	while (buffer[i])	//i++ < (size_t)bytes)
+	while (buffer[i])
 	{
 		if (buffer[i] == CHAR_SEP)
 		{
@@ -84,8 +80,9 @@ t_tris		*ft_readfd(int fd)
 	head = NULL;
 	while ((bytes = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		ft_tetris_valid(buff, bytes);
-		ft_push_tetri(buff, &head, bytes);
+		buff[bytes] = '\0';
+		ft_tetris_valid(buff);
+		ft_push_tetri(buff, &head);
 	}
 	return (head);
 }
