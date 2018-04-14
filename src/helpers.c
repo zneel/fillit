@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/13 21:15:58 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/14 13:48:48 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_print_list(t_tris *list)
 
     i = 0;
     j = 0;
-    while (list->next)
+    while (list)
     {
         while (i < 4)
         {
@@ -28,7 +28,7 @@ void ft_print_list(t_tris *list)
             ft_putchar('\n');
             ft_putstr("coords Y= ");
             ft_putnbr(list->coords[i][1]);
-            ft_putchar('\n');
+            ft_putstr("\n\n");
             ++i;
         }
         i = 0;

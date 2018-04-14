@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/13 22:37:05 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/14 13:47:37 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    ft_tetris_valid(char *buff, ssize_t bytes)
 			buff[i] != CHAR_EMPTY)
 			ft_exit_invalid_piece();
 		++i;
-		if ( i % 5 == 4 && buff[i] != '\n')
+		if (i % 5 == 4 && buff[i] != '\n')
 			ft_exit_invalid_piece();
 	}
 	if (hash_count != 4)
@@ -55,7 +55,8 @@ void	ft_push_tetri(char *buffer, t_tris **head, ssize_t bytes)
 	x = 0;
 	i = 0;
 	piece = 0;
-	while (i++ < (size_t)bytes)
+	buffer[bytes] = '\0';
+	while (buffer[i])	//i++ < (size_t)bytes)
 	{
 		if (buffer[i] == CHAR_SEP)
 		{
@@ -69,6 +70,7 @@ void	ft_push_tetri(char *buffer, t_tris **head, ssize_t bytes)
 			piece++;
 		}
 		x++;
+		i++;
 	}
 	ft_push_back(head, tab);
 }
