@@ -6,7 +6,7 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/23 18:49:32 by ebouvier          #+#    #+#              #
-#    Updated: 2018/04/12 20:26:10 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/04/15 16:37:26 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ SRCS		=	ft_strlen.c			\
 				ft_sort_integer_table.c	\
 				ft_swap.c			\
 				ft_strrev.c			\
-				ft_pow.c
+				ft_pow.c			\
+				ft_sqrt.c
 OBJS		= $(SRCS:.c=.o)
 
 C_NO		=	"\033[00m"
