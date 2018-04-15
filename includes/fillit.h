@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/15 14:24:27 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 15:05:26 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();
 void		ft_exit_invalid_piece();
 void 		ft_print_list(t_tris *list);
+void		ft_lstfree(t_tris *head);
 uint16_t	ft_lstlen(t_tris *list);
 #endif
