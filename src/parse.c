@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 12:15:08 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 14:02:20 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    ft_tetris_valid(char *buff)
 			ft_exit_invalid_piece();
 		if (i % 5 == 4 && buff[i] != '\n')
 			ft_exit_invalid_piece();
-		++i;			
+		++i;
 	}
 	if (hash_count != 4)
 		ft_exit_invalid_piece();
