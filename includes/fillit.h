@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/15 11:54:37 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 13:41:22 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,20 @@ typedef struct 	s_tris
 {
 	uint8_t 		coords[4][2];
 	uint8_t			placed;
+	uint8_t			symbol;
 	struct s_tris	*next;
 }				t_tris;
 
 void    	ft_tetris_valid(char *buff);
 t_tris		*ft_readfd(int fd);
-void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2]);
-t_tris		*ft_create_elem(uint8_t tab[4][2]);
-void		ft_push_tetri(char *buffer, t_tris **head);
+t_tris		*ft_create_elem(uint8_t tab[4][2], uint8_t symbol);
+t_map   	*ft_solve(t_tris *tetriminos_list);
+void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol);
+void		ft_push_tetri(char *buffer, t_tris **head, uint8_t symbol);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();
 void		ft_exit_invalid_piece();
-void	    ft_solve(t_tris *tetriminos_list);
 void 		ft_print_list(t_tris *list);
+uint16_t	ft_lstlen(t_tris *list);
 #endif

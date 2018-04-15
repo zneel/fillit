@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 11:28:37 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 12:15:08 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    ft_tetris_valid(char *buff)
 		ft_exit_invalid_piece();
 }
 
-void	ft_push_tetri(char *buffer, t_tris **head)
+void	ft_push_tetri(char *buffer, t_tris **head, uint8_t symbol)
 {
 	size_t	i;
 	size_t 	y;
@@ -68,7 +68,7 @@ void	ft_push_tetri(char *buffer, t_tris **head)
 		x++;
 		i++;
 	}
-	ft_push_back(head, tab);
+	ft_push_back(head, tab, symbol);
 }
 
 t_tris		*ft_readfd(int fd)
@@ -76,13 +76,17 @@ t_tris		*ft_readfd(int fd)
 	ssize_t 	bytes;
 	char 		buff[BUFF_SIZE];
 	t_tris		*head;
+	uint8_t		symbol;
 	
 	head = NULL;
+	symbol = 'A';
 	while ((bytes = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[bytes] = '\0';
 		ft_tetris_valid(buff);
-		ft_push_tetri(buff, &head);
+		if (symbol >= 'Z')
+			ft_exit_error();
+		ft_push_tetri(buff, &head, symbol++);
 	}
 	return (head);
 }

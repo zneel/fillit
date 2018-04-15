@@ -6,13 +6,13 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/14 13:48:48 by macbook          ###   ########.fr       */
+/*   Updated: 2018/04/15 13:39:39 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void ft_print_list(t_tris *list)
+void 		ft_print_list(t_tris *list)
 {
     size_t i;
 
@@ -27,6 +27,9 @@ void ft_print_list(t_tris *list)
             ft_putstr("coords Y= ");
             ft_putnbr(list->coords[i][1]);
             ft_putstr("\n");
+			ft_putstr("symbol = ");
+            ft_putchar(list->symbol);
+            ft_putstr("\n");
             ++i;
         }
         i = 0;
@@ -34,13 +37,13 @@ void ft_print_list(t_tris *list)
     }
 }
 
-void	ft_push_back(t_tris **begin_list, uint8_t tab[4][2])
+void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
 {
 	t_tris *node;
 	
 	if (!*begin_list)
 	{
-		*begin_list = ft_create_elem(tab);
+		*begin_list = ft_create_elem(tab, symbol);
 		(*begin_list)->next = NULL;
 	}
 	else
@@ -48,19 +51,33 @@ void	ft_push_back(t_tris **begin_list, uint8_t tab[4][2])
 		node = *begin_list;
 		while (node->next)
 			node = node->next;
-		node->next = ft_create_elem(tab);
+		node->next = ft_create_elem(tab, symbol);
 		node->next->next = NULL;
 	}
 }
 
-t_tris	*ft_create_elem(uint8_t tab[4][2])
+t_tris		*ft_create_elem(uint8_t tab[4][2], uint8_t symbol)
 {
 	t_tris	*node;
 
 	if (!(node = (t_tris*)malloc(sizeof(*node))))
 		return (0);
 	ft_memcpy(node->coords, tab, sizeof(uint8_t) * 8);
+	node->symbol = symbol;
 	node->placed = 0;
 	node->next = NULL;
 	return (node);
+}
+
+uint16_t	ft_lstlen(t_tris *list)
+{
+	uint16_t len;
+
+	len = 0;
+	while (list)
+	{
+		len++;
+		list = list->next;
+	}
+	return (len)
 }
