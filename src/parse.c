@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 19:20:41 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/15 20:03:56 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_tetris_valid(char *buff)
 		if (cpy[i] == CHAR_TTRIS)
 			++hash_count;
 		if (cpy[i] != CHAR_SEP && cpy[i] != CHAR_TTRIS &&
-			cpy[i] != CHAR_EMPTY)
+				cpy[i] != CHAR_EMPTY)
 			ft_exit_invalid_piece();
 		if (i % 5 == 4 && cpy[i] != '\n')
 			ft_exit_invalid_piece();
@@ -40,6 +40,23 @@ void		ft_tetris_valid(char *buff)
 	}
 	if (hash_count != 4)
 		ft_exit_invalid_piece();
+}
+
+void		ft_valid(char buff, size_t *x, size_t *y, size_t *piece, uint8_t tab[4][2])
+{
+	if (buff == CHAR_SEP)
+	{
+		*y = *y + 1;
+		*x = -1;
+	}
+	else if (buff == CHAR_TTRIS)
+	{
+		tab[*piece][0] = *x;
+		tab[*piece][1] = *y;
+		*piece+= 1;
+	}
+	*x+= 1;	
+
 }
 
 void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
@@ -56,7 +73,8 @@ void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
 	piece = 0;
 	while (buff[++i])
 	{
-		if (buff[i] == CHAR_SEP)
+		ft_valid(buff[i], &x, &y, &piece, tab);
+		/*if (buff[i] == CHAR_SEP)
 		{
 			y++;
 			x = -1;
@@ -67,7 +85,7 @@ void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
 			tab[piece][1] = y;
 			piece++;
 		}
-		x++;
+		x++;*/
 	}
 	ft_push_back(head, tab, symbol);
 }

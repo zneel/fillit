@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/15 18:57:56 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 19:51:05 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct 	s_tris
 	struct s_tris	*next;
 }				t_tris;
 
+void		ft_valid(char buff, size_t *x, size_t *y, size_t *piece, uint8_t tab[4][2]);
 void		ft_fillmap(char **map_str, uint16_t size, uint16_t sqrt);
 void    	ft_tetris_valid(char *buff);
 t_tris		*ft_readfd(int fd);
