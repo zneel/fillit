@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 17:43:08 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 17:46:42 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_map    *ft_solve(t_tris *tetriminos_list, uint16_t size)
 	if (!(map->str = (char*)malloc(len * sizeof(char))))
 		return (0);
 	ft_fillmap(map->str, len);
-	ft_putstr(map->str);
     (void) tetriminos_list;
 
     return (map);

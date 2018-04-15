@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 16:48:39 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 17:46:54 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	//ft_print_list(tetriminos);
 	size = ft_lstlen(tetriminos);
 	map = ft_solve(tetriminos, size);
+	free(map->str);	
 	free(map);
 	ft_lstfree(tetriminos);
 	close(fd);
