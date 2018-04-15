@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 14:02:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 14:47:19 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@ void    ft_tetris_valid(char *buff)
 {
 	size_t	i;
 	size_t	hash_count;
-
+	char	*cpy;
+	
 	i = 0;
 	hash_count = 0;
-	while (buff[i])
+	cpy = buff;
+	while (cpy[i])
 	{
-		if (buff[i] == CHAR_TTRIS)
+		if (cpy[i] == CHAR_TTRIS)
 		{
-			if (buff[i + 1] != CHAR_TTRIS && buff[i - 1] != CHAR_TTRIS &&
-					buff[i + 5] != CHAR_TTRIS && buff[i - 5] != CHAR_TTRIS)
+			if (cpy[i + 1] != CHAR_TTRIS && cpy[i - 1] != CHAR_TTRIS &&
+					cpy[i + 5] != CHAR_TTRIS && cpy[i - 5] != CHAR_TTRIS)
 				ft_exit_invalid_piece();
 		}
-		if (buff[i] == CHAR_TTRIS)
+		if (cpy[i] == CHAR_TTRIS)
 			++hash_count;
-		if (buff[i] != CHAR_SEP && buff[i] != CHAR_TTRIS &&
-			buff[i] != CHAR_EMPTY)
+		if (cpy[i] != CHAR_SEP && cpy[i] != CHAR_TTRIS &&
+			cpy[i] != CHAR_EMPTY)
 			ft_exit_invalid_piece();
-		if (i % 5 == 4 && buff[i] != '\n')
+		if (i % 5 == 4 && cpy[i] != '\n')
 			ft_exit_invalid_piece();
 		++i;
 	}
@@ -40,26 +42,28 @@ void    ft_tetris_valid(char *buff)
 		ft_exit_invalid_piece();
 }
 
-void	ft_push_tetri(char *buffer, t_tris **head, uint8_t symbol)
+void	ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
 {
 	size_t	i;
 	size_t 	y;
 	size_t	x;
 	size_t	piece;
 	uint8_t tab[4][2];
+	char 	*cpy;
 	
 	y = 0;
 	x = 0;
 	i = 0;
 	piece = 0;
-	while (buffer[i])
+	cpy = buff;
+	while (cpy[i])
 	{
-		if (buffer[i] == CHAR_SEP)
+		if (cpy[i] == CHAR_SEP)
 		{
 			y++;
 			x = -1;
 		}
-		else if (buffer[i] == CHAR_TTRIS)
+		else if (cpy[i] == CHAR_TTRIS)
 		{
 			tab[piece][0] = x;
 			tab[piece][1] = y;

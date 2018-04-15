@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 13:39:39 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 15:08:38 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,17 @@ uint16_t	ft_lstlen(t_tris *list)
 		len++;
 		list = list->next;
 	}
-	return (len)
+	return (len);
+}
+
+void		ft_lstfree(t_tris *head)
+{
+    t_tris *current;
+	
+	current = NULL;
+    while((current = head) != NULL)
+    {
+        head = head->next;
+        free(current);
+    }
 }

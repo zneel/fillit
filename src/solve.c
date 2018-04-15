@@ -6,7 +6,8 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 15:14:49 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/15 15:26:19 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/15 15:14:03 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +44,8 @@ t_map    *ft_solve(t_tris *tetriminos_list, uint16_t size)
     map = (t_map*)malloc(sizeof(t_map));
 	if (!(map->str = (char*)malloc(len * sizeof(char))))
 		return (0);
-	
+	ft_fillmap(map->str, len);
+	printf("%s\n", map->str);
     (void) tetriminos_list;
 
     return (map);
@@ -52,6 +54,7 @@ t_map    *ft_solve(t_tris *tetriminos_list, uint16_t size)
 
 int    ft_place_tetris(t_map *map)
 {
-        (void)map;
+
+    (void) map;
     return (0);
 }
