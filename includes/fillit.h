@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/13 22:04:34 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 11:54:37 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@
 # define CHAR_EMPTY '.'
 # define CHAR_TTRIS '#'
 # define CHAR_SEP	'\n'
-# define ERR_READ "\033[31mopen failed for some reasons"
-# define USAGE "\033[31musage: ./fillit entry_file\n"
+# define ERR_READ "open failed for some reasons"
+# define USAGE "usage: ./fillit source_file\n"
 # define NOT_VALID_TTRIS "error"
 # define TRUE 1
 # define FALSE 0
 
 typedef	struct	s_map
 {
-	uint8_t	map[4][4];
+	uint8_t	m_size_x;
+	uint8_t	m_size_y;
 	uint8_t	complete;
 }				t_map;
 
