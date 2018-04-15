@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/15 13:47:12 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 14:22:14 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 
 typedef	struct	s_map
 {
-	uint8_t		m_size_x;
-	uint8_t		m_size_y;
 	uint8_t		complete;
 	char		*map;	
 }				t_map;
