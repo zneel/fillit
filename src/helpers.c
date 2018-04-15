@@ -6,41 +6,41 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 15:08:38 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 17:51:43 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void 		ft_print_list(t_tris *list)
+void		ft_print_list(t_tris *list)
 {
-    size_t i;
+	size_t i;
 
-    i = 0;
-    while (list)
-    {
-        while (i < 4)
-        {
-            ft_putstr("coords X= ");
-            ft_putnbr(list->coords[i][0]);
-            ft_putchar('\n');
-            ft_putstr("coords Y= ");
-            ft_putnbr(list->coords[i][1]);
-            ft_putstr("\n");
+	i = 0;
+	while (list)
+	{
+		while (i < 4)
+		{
+			ft_putstr("coords X= ");
+			ft_putnbr(list->coords[i][0]);
+			ft_putchar('\n');
+			ft_putstr("coords Y= ");
+			ft_putnbr(list->coords[i][1]);
+			ft_putstr("\n");
 			ft_putstr("symbol = ");
-            ft_putchar(list->symbol);
-            ft_putstr("\n");
-            ++i;
-        }
-        i = 0;
-        list = list->next;
-    }
+			ft_putchar(list->symbol);
+			ft_putstr("\n");
+			++i;
+		}
+		i = 0;
+		list = list->next;
+	}
 }
 
 void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
 {
 	t_tris *node;
-	
+
 	if (!*begin_list)
 	{
 		*begin_list = ft_create_elem(tab, symbol);
@@ -84,12 +84,12 @@ uint16_t	ft_lstlen(t_tris *list)
 
 void		ft_lstfree(t_tris *head)
 {
-    t_tris *current;
-	
+	t_tris *current;
+
 	current = NULL;
-    while((current = head) != NULL)
-    {
-        head = head->next;
-        free(current);
-    }
+	while((current = head) != NULL)
+	{
+		head = head->next;
+		free(current);
+	}
 }

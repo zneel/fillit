@@ -6,50 +6,49 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 17:46:42 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/15 19:00:55 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fillit.h"
 
-char	*ft_fillmap(char *str, uint16_t size)
+void	ft_fillmap(char **map_str, uint16_t size, uint16_t sqrt)
 {
 	size_t		i;
 	size_t		count;
-	uint16_t 	sqrt;
-	
+
 	i = 0;
 	count = 1;
-	sqrt = ft_sqrt(size);
 	while (i < size + sqrt)
 	{
-		if (sqrt + 1 == count)
+		if (count == sqrt + 1)
 		{
-			str[i] = '\n';
+			(*map_str)[i] = '\n';
 			count = 0;
 		}
 		else
-			str[i] = '.';
+			(*map_str)[i] = '.';
 		++i;
-		++count;	
+		++count;
 	}
-	return (str);
 }
 
 t_map    *ft_solve(t_tris *tetriminos_list, uint16_t size)
 {
-    t_map   	*map;
+	t_map   	*map;
 	uint16_t	len;
+	uint16_t	sqrt;
 
+	if (!(map = (t_map*)malloc(sizeof(t_map))))
+		return (NULL);	
 	len = ft_size_map(size);
-    map = (t_map*)malloc(sizeof(t_map));
-	if (!(map->str = (char*)malloc(len * sizeof(char))))
-		return (0);
-	ft_fillmap(map->str, len);
-    (void) tetriminos_list;
-
-    return (map);
+	sqrt = ft_sqrt(len);
+	if (!(map->str = (char*)ft_memalloc((sizeof(char) * (len + sqrt) + 1))))
+		return (NULL);
+	ft_fillmap(&map->str, len, sqrt);
+	(void) tetriminos_list;
+	return (map);
 }
 
 uint16_t ft_size_map(uint16_t size)
@@ -61,7 +60,7 @@ uint16_t ft_size_map(uint16_t size)
 
 int    ft_place_tetris(t_map *map)
 {
-
-    (void) map;
-    return (0);
+	
+	(void) map;
+	return (0);
 }
