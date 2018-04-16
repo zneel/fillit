@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 20:03:44 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/16 16:21:29 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	int 		fd;
+	int			fd;
 	t_tris		*tetriminos;
 	uint16_t	size;
 	t_map		*map;
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	size = ft_lstlen(tetriminos);
 	map = ft_solve(tetriminos, size);
 	ft_putstr(map->str);
-	free(map->str);	
+	free(map->str);
 	free(map);
 	ft_lstfree(tetriminos);
 	close(fd);

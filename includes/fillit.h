@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/15 19:51:05 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/16 15:47:04 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct 	s_tris
 	struct s_tris	*next;
 }				t_tris;
 
+void		ft_is_sep(char buff, size_t *x, size_t *y);
 void		ft_valid(char buff, size_t *x, size_t *y, size_t *piece, uint8_t tab[4][2]);
 void		ft_fillmap(char **map_str, uint16_t size, uint16_t sqrt);
 void    	ft_tetris_valid(char *buff);
@@ -61,4 +62,5 @@ void 		ft_print_list(t_tris *list);
 void		ft_lstfree(t_tris *head);
 uint16_t	ft_lstlen(t_tris *list);
 uint16_t 	ft_size_map(uint16_t size);
+
 #endif
