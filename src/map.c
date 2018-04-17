@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:15:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 17:11:02 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/17 18:57:57 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_map		*ft_map(uint16_t size)
 					return (NULL);
 	while (i < sqrt)
 	{
-		if (!(map->map[i] = (char*)ft_memalloc((sizeof(char) * (sqrt + 1)))))
+		if (!(map->map[i] = (char*)ft_memalloc((sizeof(char) * (sqrt + 2)))))
 					return (NULL);
 		++i;
 	}

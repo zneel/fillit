@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/17 17:05:41 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/17 18:45:35 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void    	ft_tetris_valid(char *buff);
 uint16_t	ft_lstlen(t_tris *list);
 // uint16_t	ft_size_line(char *str);
 uint16_t	ft_size_map(uint16_t size);
-uint8_t	ft_tetris_can_place(char *map, uint16_t map_idx);
+uint8_t		ft_tetris_can_place(char **map, uint8_t x, uint8_t y);
 
 #endif
