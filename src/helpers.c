@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 17:51:43 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/16 16:54:13 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ uint16_t	ft_lstlen(t_tris *list)
 
 void		ft_lstfree(t_tris *head)
 {
-	t_tris *current;
+	t_tris	*tmp;
+	t_tris	*tmp_next;
 
-	current = NULL;
-	while((current = head) != NULL)
+	tmp = head;
+	while (tmp)
 	{
-		head = head->next;
-		free(current);
+		tmp_next = tmp->next;
+		free(tmp);
+		tmp = tmp_next;
 	}
 }

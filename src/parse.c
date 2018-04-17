@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/15 19:20:41 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/16 16:53:25 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_tetris_valid(char *buff)
 		if (cpy[i] == CHAR_TTRIS)
 			++hash_count;
 		if (cpy[i] != CHAR_SEP && cpy[i] != CHAR_TTRIS &&
-			cpy[i] != CHAR_EMPTY)
+				cpy[i] != CHAR_EMPTY)
 			ft_exit_invalid_piece();
 		if (i % 5 == 4 && cpy[i] != '\n')
 			ft_exit_invalid_piece();
@@ -40,6 +40,15 @@ void		ft_tetris_valid(char *buff)
 	}
 	if (hash_count != 4)
 		ft_exit_invalid_piece();
+}
+
+void		ft_is_sep(char buff, size_t *x, size_t *y)
+{
+	if (buff == CHAR_SEP)
+	{
+		*x = -1;
+		*y = *y + 1;
+	}
 }
 
 void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
@@ -57,10 +66,7 @@ void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
 	while (buff[++i])
 	{
 		if (buff[i] == CHAR_SEP)
-		{
-			y++;
-			x = -1;
-		}
+			ft_is_sep(buff[i], &x, &y);
 		else if (buff[i] == CHAR_TTRIS)
 		{
 			tab[piece][0] = x;
