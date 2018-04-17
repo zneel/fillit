@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 14:49:09 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/17 17:11:42 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int	main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY | O_APPEND)) < 0)
 		ft_exit_error();
 	tetriminos = ft_read_file_des(fd);
-	ft_print_list(tetriminos);
 	size = ft_lstlen(tetriminos);
 	map = ft_map(size);
+	int i = 0;
+	while (map->map[i])
+		ft_putstr(map->map[i++]);
 	ft_place_tetris(map, tetriminos);
-	free(map->str);
+	free(map->map);
 	free(map);
 	ft_lstfree(tetriminos);
 	close(fd);

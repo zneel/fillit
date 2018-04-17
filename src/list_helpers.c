@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 14:46:00 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/17 15:24:29 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void		ft_print_list(t_tris *list)
 			ft_putstr("\n");
 			ft_putstr("symbol = ");
 			ft_putchar(list->symbol);
+			ft_putstr("\n");
+			ft_putstr("placed = ");
+			ft_putnbr(list->placed);
 			ft_putstr("\n");
 			++i;
 		}

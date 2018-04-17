@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/17 14:49:01 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/17 17:05:41 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 typedef	struct		s_map
 {
 	uint8_t			complete;
-	char			*str;
+	char			**map;
 }					t_map;
 
 typedef struct 		s_tris
@@ -60,12 +60,12 @@ void		ft_exit_invalid_piece();
 void 		ft_print_list(t_tris *list);
 void		ft_lstfree(t_tris *head);
 void		ft_is_sep(char buff, size_t *x, size_t *y);
-void		ft_fill_map(char **map_str, uint16_t size, uint16_t sqrt);
+void		ft_fill_map(char **map, uint16_t sqrt);
 void    	ft_tetris_valid(char *buff);
 
 uint16_t	ft_lstlen(t_tris *list);
-uint16_t	ft_size_line(char *str);
+// uint16_t	ft_size_line(char *str);
 uint16_t	ft_size_map(uint16_t size);
-uint8_t		ft_check_tetris(uint16_t map_idx, t_tris *tetris, uint16_t size_line);
+uint8_t	ft_tetris_can_place(char *map, uint16_t map_idx);
 
 #endif
