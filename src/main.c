@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/16 16:21:29 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/16 18:54:39 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 	//ft_print_list(tetriminos);
 	size = ft_lstlen(tetriminos);
 	map = ft_solve(tetriminos, size);
-	ft_putstr(map->str);
+	ft_place_tetris(map, tetriminos, size);
+	//ft_putstr(map->str);
 	free(map->str);
 	free(map);
 	ft_lstfree(tetriminos);

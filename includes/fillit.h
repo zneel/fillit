@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/16 15:47:04 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/16 18:54:27 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef	struct	s_map
+typedef	struct		s_map
 {
-	uint8_t		complete;
-	char		*str;
-}				t_map;
+	uint8_t			complete;
+	char			*str;
+}					t_map;
 
-typedef struct 	s_tris
+typedef struct 		s_tris
 {
 	uint8_t 		coords[4][2];
 	uint8_t			placed;
 	uint8_t			symbol;
 	struct s_tris	*next;
-}				t_tris;
+}					t_tris;
 
+int			ft_place_tetris(t_map *map, t_tris *tetriminos, uint16_t size);
 void		ft_is_sep(char buff, size_t *x, size_t *y);
-void		ft_valid(char buff, size_t *x, size_t *y, size_t *piece, uint8_t tab[4][2]);
 void		ft_fillmap(char **map_str, uint16_t size, uint16_t sqrt);
 void    	ft_tetris_valid(char *buff);
 t_tris		*ft_readfd(int fd);

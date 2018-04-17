@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/16 15:31:53 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/16 19:44:51 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,29 @@ uint16_t	ft_size_map(uint16_t size)
 	return (size * 4);
 }
 
-int			ft_place_tetris(t_map *map)
+int			ft_place_tetris(t_map *map ,t_tris *tetriminos, uint16_t size)
 {
-	(void)map;
+	//map = ft_solve(tetriminos, size + 1);
+	t_tris	*tmp;
+	uint8_t	nbr;
+	int		i;
+
+	//ft_putnbr(size);
+	tmp = tetriminos;
+	while (tetriminos)
+	{
+		i = 0;
+		while (i < 4)
+		{
+			nbr = tetriminos->coords[i][0] + (tetriminos->coords[i][1] * 5);
+		 	map->str[nbr] = tetriminos->symbol;
+			i++;
+		}
+		tetriminos = tetriminos->next;
+	}
+
+	ft_putstr(map->str);
+	(void)size;
+	(void)tetriminos;
 	return (0);
 }
