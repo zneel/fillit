@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/16 16:53:25 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/17 14:49:05 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,11 @@ void		ft_tetris_valid(char *buff)
 		ft_exit_invalid_piece();
 }
 
-void		ft_is_sep(char buff, size_t *x, size_t *y)
-{
-	if (buff == CHAR_SEP)
-	{
-		*x = -1;
-		*y = *y + 1;
-	}
-}
 
-void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
+/*
+**	Push a tetris (node) to the linked list with the correct coordonates
+*/
+void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
 {
 	size_t	i;
 	size_t	y;
@@ -75,10 +70,13 @@ void		ft_push_tetri(char *buff, t_tris **head, uint8_t symbol)
 		}
 		x++;
 	}
-	ft_push_back(head, tab, symbol);
+	ft_lst_push_back(head, tab, symbol);
 }
 
-t_tris		*ft_readfd(int fd)
+/*
+**	Return a linked list from the fd given
+*/
+t_tris		*ft_read_file_des(int fd)
 {
 	ssize_t		bytes;
 	char		buff[BUFF_SIZE];
@@ -93,7 +91,7 @@ t_tris		*ft_readfd(int fd)
 		ft_tetris_valid(buff);
 		if (symbol > 'Z')
 			ft_exit_error();
-		ft_push_tetri(buff, &head, symbol++);
+		ft_push_tetris(buff, &head, symbol++);
 	}
 	return (head);
 }

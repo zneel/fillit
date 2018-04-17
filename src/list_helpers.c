@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.c                                          :+:      :+:    :+:   */
+/*   list_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/16 16:54:13 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/17 14:46:00 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+**	Print the t_tris list (Mr Obvious)
+*/
 void		ft_print_list(t_tris *list)
 {
 	size_t i;
@@ -37,13 +40,16 @@ void		ft_print_list(t_tris *list)
 	}
 }
 
-void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
+/*
+**	Append an element to the list(Mr Obvious)
+*/
+void		ft_lst_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
 {
 	t_tris *node;
 
 	if (!*begin_list)
 	{
-		*begin_list = ft_create_elem(tab, symbol);
+		*begin_list = ft_lst_new_elem(tab, symbol);
 		(*begin_list)->next = NULL;
 	}
 	else
@@ -51,12 +57,15 @@ void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
 		node = *begin_list;
 		while (node->next)
 			node = node->next;
-		node->next = ft_create_elem(tab, symbol);
+		node->next = ft_lst_new_elem(tab, symbol);
 		node->next->next = NULL;
 	}
 }
 
-t_tris		*ft_create_elem(uint8_t tab[4][2], uint8_t symbol)
+/*
+**	Create a node (Mr Obvious)
+*/
+t_tris		*ft_lst_new_elem(uint8_t tab[4][2], uint8_t symbol)
 {
 	t_tris	*node;
 
@@ -69,6 +78,9 @@ t_tris		*ft_create_elem(uint8_t tab[4][2], uint8_t symbol)
 	return (node);
 }
 
+/*
+**	Return len of the list (Mr Obvious)
+*/
 uint16_t	ft_lstlen(t_tris *list)
 {
 	uint16_t len;
@@ -82,6 +94,9 @@ uint16_t	ft_lstlen(t_tris *list)
 	return (len);
 }
 
+/*
+**	Free a list (Mr Obvious)
+*/
 void		ft_lstfree(t_tris *head)
 {
 	t_tris	*tmp;

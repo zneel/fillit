@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/17 13:19:01 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/17 14:49:01 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,27 @@ typedef struct 		s_tris
 	struct s_tris	*next;
 }					t_tris;
 
-int			ft_sizeline(char *str);
-int			ft_place_tetris(t_map *map, t_tris *tetriminos, uint16_t size);
-void		ft_is_sep(char buff, size_t *x, size_t *y);
-void		ft_fillmap(char **map_str, uint16_t size, uint16_t sqrt);
-void    	ft_tetris_valid(char *buff);
-t_tris		*ft_readfd(int fd);
-t_tris		*ft_create_elem(uint8_t tab[4][2], uint8_t symbol);
-t_map   	*ft_solve(t_tris *tetriminos_list, uint16_t size);
-void		ft_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol);
-void		ft_push_tetri(char *buffer, t_tris **head, uint8_t symbol);
+int			ft_place_tetris(t_map *map, t_tris *tetris_l);
+
+t_tris		*ft_read_file_des(int fd);
+t_tris		*ft_lst_new_elem(uint8_t tab[4][2], uint8_t symbol);
+t_map   	*ft_map(uint16_t size);
+
+void		ft_lst_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol);
+void		ft_push_tetris(char *buffer, t_tris **head, uint8_t symbol);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
 void	    ft_display_usage_no_file();
 void		ft_exit_invalid_piece();
 void 		ft_print_list(t_tris *list);
 void		ft_lstfree(t_tris *head);
+void		ft_is_sep(char buff, size_t *x, size_t *y);
+void		ft_fill_map(char **map_str, uint16_t size, uint16_t sqrt);
+void    	ft_tetris_valid(char *buff);
+
 uint16_t	ft_lstlen(t_tris *list);
-uint16_t 	ft_size_map(uint16_t size);
+uint16_t	ft_size_line(char *str);
+uint16_t	ft_size_map(uint16_t size);
+uint8_t		ft_check_tetris(uint16_t map_idx, t_tris *tetris, uint16_t size_line);
 
 #endif

@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parse_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/12 21:40:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 14:45:57 by ebouvier         ###   ########.fr       */
+/*   Created: 2018/04/17 14:43:51 by ebouvier          #+#    #+#             */
+/*   Updated: 2018/04/17 14:49:10 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-inline void	ft_exit_error(void)
+/*
+**  Check if the char is a separator and change x or y accordingly
+*/
+void		ft_is_sep(char c, size_t *x, size_t *y)
 {
-	ft_putstr(ERR_READ);
-	exit(1);
-}
-
-inline void	ft_display_usage_no_file(void)
-{
-	ft_putstr(USAGE);
-	exit(1);
-}
-
-inline void	ft_display_usage_too_mny_args(void)
-{
-	ft_putstr("\033[31mToo many arguments\n");
-	ft_putstr(USAGE);
-	exit(1);
-}
-
-inline void	ft_exit_invalid_piece(void)
-{
-	ft_putstr(NOT_VALID_TTRIS);
-	exit(1);
+	if (c == CHAR_SEP)
+	{
+		*x = -1;
+		*y = *y + 1;
+	}
 }
