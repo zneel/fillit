@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/16 18:54:27 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/17 13:19:01 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct 		s_tris
 	struct s_tris	*next;
 }					t_tris;
 
+int			ft_sizeline(char *str);
 int			ft_place_tetris(t_map *map, t_tris *tetriminos, uint16_t size);
 void		ft_is_sep(char buff, size_t *x, size_t *y);
 void		ft_fillmap(char **map_str, uint16_t size, uint16_t sqrt);
