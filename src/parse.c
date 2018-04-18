@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 21:50:47 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/18 18:51:27 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
 			tab[piece][1] = (int8_t)y;
 			piece++;
 		}
-		++x;
-		++i;
+		x++;
+		i++;
 	}
 	ft_reformat_coords(tab);
 	ft_lst_push_back(head, tab, symbol);

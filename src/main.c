@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 20:53:25 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/18 18:39:47 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	main(int argc, char **argv)
 		ft_exit_error();
 	tetriminos = ft_read_file_des(fd);
 	size = ft_lstlen(tetriminos);
-	size = 16;
+	//size = 16;
 	map = ft_map(size);
 	ft_place_tetris(map, tetriminos);
-		int i = -1;
-	while (map->map[++i])
-		ft_putstr(map->map[i]);
-	ft_print_list(tetriminos);
+	//int i = -1;
+	//while (map->map[++i])
+	//	ft_putstr(map->map[i]);
+	//ft_print_list(tetriminos);
 	free(map->map);
 	free(map);
 	ft_lstfree(tetriminos);

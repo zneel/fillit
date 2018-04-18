@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/17 22:02:19 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/18 19:43:05 by srequiem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void		ft_reformat_coords(int8_t tab[4][2]);
 uint16_t	ft_lstlen(t_tris *list);
 uint16_t	ft_size_map(uint16_t size);
 uint8_t		ft_insert_tetris(t_map *map, t_tris *tetris, size_t i);
-uint8_t		ft_check_place(char **map, t_tris *tetris);
+uint8_t		ft_check_place(char **map, uint8_t x, uint8_t y);
 
 #endif
