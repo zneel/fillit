@@ -18,8 +18,8 @@
 uint16_t	ft_size_map(uint16_t size)
 {
 	if (ft_sqrt(size * 4) == 0)
-		return (ft_size_map(size + 1));
-	return (size * 4);
+		return (ft_size_map(size + (uint16_t)1));
+	return (uint16_t)(size * 4);
 }
 
 /*
@@ -53,7 +53,7 @@ t_map		*ft_map(uint16_t size)
 	i = 0;
 	if (!(map = (t_map*)malloc(sizeof(t_map))))
 		return (NULL);
-	sqrt = ft_sqrt(ft_size_map(size));
+	sqrt = (uint16_t)ft_sqrt(ft_size_map(size));
 	if (!(map->map = (char**)ft_memalloc((sizeof(char *) * (sqrt + 1)))))
 					return (NULL);
 	while (i < sqrt)
@@ -64,4 +64,15 @@ t_map		*ft_map(uint16_t size)
 	}
 	ft_fill_map(map->map, sqrt);
 	return (map);
+}
+
+/*
+**	Return a map bigger map
+*/
+t_map		*ft_resize_map(t_tris *tetris_list, uint8_t i)
+{
+	uint16_t size;
+
+	size = ft_lstlen(tetris_list);
+	return ft_map(size + i);
 }

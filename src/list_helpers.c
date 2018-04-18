@@ -24,10 +24,10 @@ void		ft_print_list(t_tris *list)
 	{
 		while (i < 4)
 		{
-			ft_putstr("coords X= ");
+			ft_putstr("coords X = ");
 			ft_putnbr(list->coords[i][0]);
 			ft_putchar('\n');
-			ft_putstr("coords Y= ");
+			ft_putstr("coords Y = ");
 			ft_putnbr(list->coords[i][1]);
 			ft_putstr("\n");
 			ft_putstr("symbol = ");
@@ -46,7 +46,7 @@ void		ft_print_list(t_tris *list)
 /*
 **	Append an element to the list(Mr Obvious)
 */
-void		ft_lst_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
+void		ft_lst_push_back(t_tris **begin_list, int8_t tab[4][2], uint8_t symbol)
 {
 	t_tris *node;
 
@@ -68,7 +68,7 @@ void		ft_lst_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol)
 /*
 **	Create a node (Mr Obvious)
 */
-t_tris		*ft_lst_new_elem(uint8_t tab[4][2], uint8_t symbol)
+t_tris		*ft_lst_new_elem(int8_t tab[4][2], uint8_t symbol)
 {
 	t_tris	*node;
 

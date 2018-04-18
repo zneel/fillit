@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/17 18:45:35 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/17 22:02:19 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef	struct		s_map
 
 typedef struct 		s_tris
 {
-	uint8_t 		coords[4][2];
+	int8_t 		coords[4][2];
 	uint8_t			placed;
 	uint8_t			symbol;
 	struct s_tris	*next;
@@ -48,10 +48,11 @@ typedef struct 		s_tris
 int			ft_place_tetris(t_map *map, t_tris *tetris_l);
 
 t_tris		*ft_read_file_des(int fd);
-t_tris		*ft_lst_new_elem(uint8_t tab[4][2], uint8_t symbol);
+t_tris		*ft_lst_new_elem(int8_t tab[4][2], uint8_t symbol);
 t_map   	*ft_map(uint16_t size);
+t_map		*ft_resize_map(t_tris *tetris_list, uint8_t i);
 
-void		ft_lst_push_back(t_tris **begin_list, uint8_t tab[4][2], uint8_t symbol);
+void		ft_lst_push_back(t_tris **begin_list, int8_t tab[4][2], uint8_t symbol);
 void		ft_push_tetris(char *buffer, t_tris **head, uint8_t symbol);
 void    	ft_exit_error();
 void    	ft_display_usage_too_mny_args();
@@ -62,10 +63,11 @@ void		ft_lstfree(t_tris *head);
 void		ft_is_sep(char buff, size_t *x, size_t *y);
 void		ft_fill_map(char **map, uint16_t sqrt);
 void    	ft_tetris_valid(char *buff);
+void		ft_reformat_coords(int8_t tab[4][2]);
 
 uint16_t	ft_lstlen(t_tris *list);
-// uint16_t	ft_size_line(char *str);
 uint16_t	ft_size_map(uint16_t size);
-uint8_t		ft_tetris_can_place(char **map, uint8_t x, uint8_t y);
+uint8_t		ft_insert_tetris(t_map *map, t_tris *tetris, size_t i);
+uint8_t		ft_check_place(char **map, t_tris *tetris);
 
 #endif
