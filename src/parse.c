@@ -61,7 +61,10 @@ void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
 	while (buff[i])
 	{
 		if (buff[i] == CHAR_SEP)
-			ft_is_sep(buff[i], &x, &y);
+		{
+			x = 0;
+			y += 1;
+		}
 		else if (buff[i] == CHAR_TTRIS)
 		{
 			tab[piece][0] = (int8_t)x;

@@ -19,7 +19,6 @@ void		ft_is_sep(char c, size_t *x, size_t *y)
 {
 	if (c == CHAR_SEP)
 	{
-		*x = -1;
-		*y = *y + 1;
+
 	}
 }

@@ -13,62 +13,121 @@
 #include "fillit.h"
 
 /*
-**	Place a tetriminos on map.
-**	Iterate over the list and get x and y
-**	Since map->str is linear we need to calculate the index (map_idx)
+** 1_ need to check if i can place the tetrimino on the map
+** 2_ if yes -> place it and go next tetrimino
+** 3_ if no -> increment its coords until map len in x and y
+** 4_ if it fits -> place it with new coords and go next tetrimino
+** 5_ if not increase map size and go back to 1_
 */
-int		ft_place_tetris(t_map *map, t_tris *tlist)
-{
-	uint8_t 	i;
 
-	while (ft_solve(tlist, map) == 0)
-		;
-	return (TRUE);
+t_map	*ft_resolve(t_map *map, t_tris *list)
+{
+	t_map *tmp_map;
+
+	tmp_map = map;
+	while(ft_solve(tmp_map, list) == 0)
+		tmp_map = ft_resize_map(list);
+	return (tmp_map);
 }
 
-uint8_t ft_solve(t_tris *tlist, t_map *map)
+int8_t	ft_solve(t_map *map, t_tris *list)
 {
-	size_t i;
+	int8_t x;
+	int8_t y;
+	size_t map_len;
 
-	while (tlist)
+	x = 0;
+	y = 0;
+	map_len = ft_map_len(map->map);
+	while (list)
 	{
-		i = 0;
-		if (ft_check(map->map, tlist->coords) == 0)
-			map = ft_resize_map(tlist);
-		while (i < 4)
-			ft_insert_tetris(&map, tlist, i++);
-		tlist->placed = TRUE;
-		tlist = tlist->next;
-		ft_putstr("-------MAP-----\n");
-		ft_print_map(map->map);
+		if (ft_check(map, list, x, y))
+		{
+			if (x > map_len)
+			{
+				x = 0;
+				y++;
+			}
+			if (y > map_len && list->symbol == 'A')
+			{
+				/*free(map);
+				map = ft_resize_map(list); // need head list !*/
+				x = 0;
+				y = 0;
+			}
+			if (y > map_len)
+			{
+
+			}
+			x++;
+		}
+		ft_place(map, list, x, y);
+		list = list->next;
 	}
 	return (TRUE);
 }
 
-uint8_t	ft_insert_tetris(t_map **map, t_tris *ttris, size_t i)
+
+int8_t	ft_check(t_map *map, t_tris *tris, int8_t x, int8_t y)
 {
-	(*map)->map[ttris->coords[i][1]][ttris->coords[i][0]] = ttris->symbol;
+	size_t i;
+	size_t map_len;
+
+	i = 0;
+	map_len = ft_map_len(map->map);
+	if (x < 0 && y < 0 && x > map_len && y > map_len)
+		return (FALSE);
+	if (map->map[x + tris->coords[i][1]][y + tris->coords[i][0]] != '.')
+		return (FALSE);
+	++i;
+	while (i < 3)
+	{
+		if (x + tris->coords[i][1] - tris->coords[0][1] < 0 && x +
+																	   tris->coords[i][0] - tris->coords[0][0] < 0)
+			return (FALSE);
+		if (x + tris->coords[i][1] - tris->coords[0][1] > map_len && x +
+															   tris->coords[i][0] - tris->coords[0][0] > map_len)
+			return (FALSE);
+		if (map->map[x + tris->coords[i][1] - tris->coords[0][0] ][y +
+				tris->coords[i][0] - tris->coords[0][1]] !=
+				'.')
+			return (FALSE);
+		++i;
+	}
 	return (TRUE);
 }
 
-uint8_t	ft_check(char **map, uint8_t tab[4][2])
+int8_t ft_place(t_map *map, t_tris *tris, int8_t x, int8_t y)
+{
+	size_t i;
+
+	i = 0;
+	while (i < 4)
+	{
+		map->map[tris->coords[i][1]][tris->coords[i][0]] =
+				tris->symbol;
+		++i;
+	}
+	return (FALSE);
+}
+
+uint8_t ft_remove_ttris(t_map *map, char c)
 {
 	size_t i;
 	size_t j;
-	uint8_t map_len;
+	size_t map_len;
 
 	i = 0;
-	map_len = ft_map_len(map, (uint8_t)i);
-	while (i < map_len)
+	map_len = ft_map_len(map->map);
+	while(i < map_len)
 	{
 		j = 0;
 		while (j < map_len)
 		{
-			if (map[tab[i][0]][tab[i][1]] != '.')
-				return (FALSE);
+			if (map->map[i][j] == c)
+				map->map[i][j] = '.';
 			++j;
 		}
 		++i;
 	}
-	return (TRUE);
 }

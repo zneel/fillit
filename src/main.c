@@ -23,13 +23,15 @@ int	main(int argc, char **argv)
 		ft_display_usage_too_mny_args();
 	if (argc < 2)
 		ft_display_usage_no_file();
-	if ((fd = open(argv[1], O_RDONLY | O_APPEND)) < 0)
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_exit_error();
 	tetriminos = ft_read_file_des(fd);
 	size = ft_lstlen(tetriminos);
+	size = 16;
 	map = ft_map(size);
-	ft_place_tetris(map, tetriminos);
-	//ft_print_list(tetriminos);
+	ft_print_list(tetriminos);
+	map = ft_resolve(map, tetriminos);
+	ft_print_map(map->map);
 	free(map->map);
 	free(map);
 	ft_lstfree(tetriminos);

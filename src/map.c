@@ -36,7 +36,7 @@ void		ft_fill_map(char **map, uint16_t sqrt)
 		j = 0;
 		while (j < sqrt)
 			map[i][j++] = '.';
-		map[i][j] = '\n';		
+		map[i][j] = '\n';
 		++i;
 	}
 }
@@ -85,7 +85,7 @@ void	ft_print_map(char **map)
 		ft_putstr(map[i++]);
 }
 
-u_int8_t ft_map_len(char **map, uint8_t x)
+uint8_t ft_map_len(char **map)
 {
 	size_t  i;
 	uint8_t res;
