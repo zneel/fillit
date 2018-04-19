@@ -17,46 +17,65 @@
 **	Iterate over the list and get x and y
 **	Since map->str is linear we need to calculate the index (map_idx)
 */
-int		ft_place_tetris(t_map *map, t_tris *tetris_l)
+int		ft_place_tetris(t_map *map, t_tris *tlist)
 {
-	size_t		i;
-	uint8_t		x;
-	uint8_t		y;
-	//uint8_t		origin[2];
+	t_map		*curr_map;
+	uint8_t 	i;
 
-	while (tetris_l)
+	curr_map = map;
+	i = 0;
+	while (ft_solve(tlist, curr_map) == 0)
+	{
+		curr_map = ft_resize_map(tlist, i);
+		++i;
+	}
+	return (TRUE);
+}
+
+uint8_t ft_solve(t_tris *tlist, t_map *map)
+{
+	size_t i;
+
+	while (tlist)
 	{
 		i = 0;
 		while (i < 4)
 		{
-			x = tetris_l->coords[i][0];
-			y = tetris_l->coords[i][1];
-			//map->map[tetris_l->coords[i][1]][tetris_l->coords[i][0]] = tetris_l->symbol;
-			if (ft_check_place(map->map, x, y) == 1)
-				ft_insert_tetris(map, tetris_l, i);
+			if (ft_check(map->map, tlist->coords[i][0], tlist->coords[i][1]))
+				ft_insert_tetris(&map, tlist, i);
 			++i;
 		}
-		int i = -1;
-		while (map->map[++i])
-			ft_putstr(map->map[i]);
-		ft_putchar('\n');
-		tetris_l->placed = 1;
-		tetris_l = tetris_l->next;
+		tlist->placed = TRUE;
+		tlist = tlist->next;
+		ft_putstr("-------MAP-----\n");
+		ft_print_map(map->map);
 	}
-	return (0);
-}
-
-uint8_t	ft_insert_tetris(t_map *map, t_tris *tetris, size_t i)
-{
-	if (map && tetris)
-		map->map[tetris->coords[i][1]][tetris->coords[i][0]] = tetris->symbol;
 	return (TRUE);
 }
 
-uint8_t	ft_check_place(char **map, uint8_t x, uint8_t y)
+uint8_t	ft_insert_tetris(t_map **map, t_tris *ttris, size_t i)
 {
+	(*map)->map[ttris->coords[i][1]][ttris->coords[i][0]] = ttris->symbol;
+	return (TRUE);
+}
 
-	if (map[y][x] != '.')
-		return (0);
+uint8_t	ft_check(char **map, uint8_t x, uint8_t y)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < ft_map_len(map, x))
+		{
+			if (map[x][y] != '.')
+				return (0);
+			++j;
+
+		}
+		++i;
+	}
 	return (1);
 }

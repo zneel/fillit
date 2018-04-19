@@ -39,7 +39,7 @@ typedef	struct		s_map
 
 typedef struct 		s_tris
 {
-	int8_t 		coords[4][2];
+	uint8_t 		coords[4][2];
 	uint8_t			placed;
 	uint8_t			symbol;
 	struct s_tris	*next;
@@ -64,10 +64,13 @@ void		ft_is_sep(char buff, size_t *x, size_t *y);
 void		ft_fill_map(char **map, uint16_t sqrt);
 void    	ft_tetris_valid(char *buff);
 void		ft_reformat_coords(int8_t tab[4][2]);
+void		ft_print_map(char **map);
 
 uint16_t	ft_lstlen(t_tris *list);
 uint16_t	ft_size_map(uint16_t size);
-uint8_t		ft_insert_tetris(t_map *map, t_tris *tetris, size_t i);
-uint8_t		ft_check_place(char **map, uint8_t x, uint8_t y);
+uint8_t		ft_insert_tetris(t_map **map, t_tris *tetris, size_t i);
+uint8_t		ft_check(char **map, uint8_t x, uint8_t y);
+uint8_t 	ft_solve(t_tris *tlist, t_map *map);
+u_int8_t 	ft_map_len(char **map, uint8_t x);
 
 #endif

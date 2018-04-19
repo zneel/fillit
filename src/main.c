@@ -27,12 +27,8 @@ int	main(int argc, char **argv)
 		ft_exit_error();
 	tetriminos = ft_read_file_des(fd);
 	size = ft_lstlen(tetriminos);
-	//size = 16;
 	map = ft_map(size);
 	ft_place_tetris(map, tetriminos);
-	//int i = -1;
-	//while (map->map[++i])
-	//	ft_putstr(map->map[i]);
 	//ft_print_list(tetriminos);
 	free(map->map);
 	free(map);

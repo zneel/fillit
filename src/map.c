@@ -76,3 +76,26 @@ t_map		*ft_resize_map(t_tris *tetris_list, uint8_t i)
 	size = ft_lstlen(tetris_list);
 	return ft_map(size + i);
 }
+
+void	ft_print_map(char **map)
+{
+	size_t i;
+	i = 0;
+	while(map[i])
+		ft_putstr(map[i++]);
+}
+
+u_int8_t ft_map_len(char **map, uint8_t x)
+{
+	size_t  i;
+	uint8_t res;
+
+	i = 0;
+	res = 0;
+	while (map[x][i] != '\n')
+	{
+		++res;
+		++i;
+	}
+	return (res);
+}
