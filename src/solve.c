@@ -19,16 +19,10 @@
 */
 int		ft_place_tetris(t_map *map, t_tris *tlist)
 {
-	t_map		*curr_map;
 	uint8_t 	i;
 
-	curr_map = map;
-	i = 0;
-	while (ft_solve(tlist, curr_map) == 0)
-	{
-		curr_map = ft_resize_map(tlist, i);
-		++i;
-	}
+	while (ft_solve(tlist, map) == 0)
+		;
 	return (TRUE);
 }
 
@@ -39,12 +33,10 @@ uint8_t ft_solve(t_tris *tlist, t_map *map)
 	while (tlist)
 	{
 		i = 0;
+		if (ft_check(map->map, tlist->coords) == 0)
+			map = ft_resize_map(tlist);
 		while (i < 4)
-		{
-			if (ft_check(map->map, tlist->coords[i][0], tlist->coords[i][1]))
-				ft_insert_tetris(&map, tlist, i);
-			++i;
-		}
+			ft_insert_tetris(&map, tlist, i++);
 		tlist->placed = TRUE;
 		tlist = tlist->next;
 		ft_putstr("-------MAP-----\n");
@@ -59,23 +51,24 @@ uint8_t	ft_insert_tetris(t_map **map, t_tris *ttris, size_t i)
 	return (TRUE);
 }
 
-uint8_t	ft_check(char **map, uint8_t x, uint8_t y)
+uint8_t	ft_check(char **map, uint8_t tab[4][2])
 {
 	size_t i;
 	size_t j;
+	uint8_t map_len;
 
 	i = 0;
-	while (i < 4)
+	map_len = ft_map_len(map, (uint8_t)i);
+	while (i < map_len)
 	{
 		j = 0;
-		while (j < ft_map_len(map, x))
+		while (j < map_len)
 		{
-			if (map[x][y] != '.')
-				return (0);
+			if (map[tab[i][0]][tab[i][1]] != '.')
+				return (FALSE);
 			++j;
-
 		}
 		++i;
 	}
-	return (1);
+	return (TRUE);
 }

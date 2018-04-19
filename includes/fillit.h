@@ -50,7 +50,7 @@ int			ft_place_tetris(t_map *map, t_tris *tetris_l);
 t_tris		*ft_read_file_des(int fd);
 t_tris		*ft_lst_new_elem(int8_t tab[4][2], uint8_t symbol);
 t_map   	*ft_map(uint16_t size);
-t_map		*ft_resize_map(t_tris *tetris_list, uint8_t i);
+t_map		*ft_resize_map(t_tris *tetris_list);
 
 void		ft_lst_push_back(t_tris **begin_list, int8_t tab[4][2], uint8_t symbol);
 void		ft_push_tetris(char *buffer, t_tris **head, uint8_t symbol);
@@ -69,7 +69,7 @@ void		ft_print_map(char **map);
 uint16_t	ft_lstlen(t_tris *list);
 uint16_t	ft_size_map(uint16_t size);
 uint8_t		ft_insert_tetris(t_map **map, t_tris *tetris, size_t i);
-uint8_t		ft_check(char **map, uint8_t x, uint8_t y);
+uint8_t		ft_check(char **map, uint8_t tab[4][2]);
 uint8_t 	ft_solve(t_tris *tlist, t_map *map);
 u_int8_t 	ft_map_len(char **map, uint8_t x);
 
