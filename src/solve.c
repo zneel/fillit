@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/18 19:43:31 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/20 12:25:34 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 int		ft_place_tetris(t_map *map, t_tris *tlist)
 {
-	uint8_t 	i;
+	//uint8_t 	i;
 
 	while (ft_solve(tlist, map) == 0)
 		;
@@ -58,7 +58,7 @@ uint8_t	ft_check(char **map, uint8_t tab[4][2])
 	uint8_t map_len;
 
 	i = 0;
-	map_len = ft_map_len(map, (uint8_t)i);
+	map_len = ft_map_len(map);
 	while (i < map_len)
 	{
 		j = 0;

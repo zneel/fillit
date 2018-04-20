@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:15:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 18:57:57 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/20 12:24:03 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ft_print_map(char **map)
 		ft_putstr(map[i++]);
 }
 
-u_int8_t ft_map_len(char **map, uint8_t x)
+u_int8_t ft_map_len(char **map)
 {
 	size_t  i;
 	uint8_t res;

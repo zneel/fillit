@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/18 19:43:05 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/20 14:04:40 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct 		s_tris
 
 int			ft_place_tetris(t_map *map, t_tris *tetris_l);
 
-t_tris		*ft_read_file_des(int fd);
+void		ft_check_last(int fd);
+t_tris		*ft_read_file_des(int fd, char *argv1);
 t_tris		*ft_lst_new_elem(int8_t tab[4][2], uint8_t symbol);
 t_map   	*ft_map(uint16_t size);
 t_map		*ft_resize_map(t_tris *tetris_list);
@@ -71,6 +72,6 @@ uint16_t	ft_size_map(uint16_t size);
 uint8_t		ft_insert_tetris(t_map **map, t_tris *tetris, size_t i);
 uint8_t		ft_check(char **map, uint8_t tab[4][2]);
 uint8_t 	ft_solve(t_tris *tlist, t_map *map);
-u_int8_t 	ft_map_len(char **map, uint8_t x);
+u_int8_t 	ft_map_len(char **map);
 
 #endif

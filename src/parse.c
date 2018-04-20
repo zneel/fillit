@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/18 18:51:27 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/20 14:21:25 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,28 @@ void	ft_reformat_coords(int8_t tab[4][2])
 }
 
 /*
+**	Check if the last line is an empty line
+**	Return an error message in this case
+*/
+
+void	ft_check_last(int fd)
+{
+	ssize_t	bytes;
+	char	buff[2];
+
+	while ((bytes = read(fd, &buff, 2)) > 0)
+	{
+		;
+	}
+	if (ft_strcmp(buff, "\n\n") == 0)
+		ft_exit_invalid_piece();
+	close(fd);
+}
+
+/*
 **	Return a linked list from the fd given
 */
-t_tris		*ft_read_file_des(int fd)
+t_tris		*ft_read_file_des(int fd, char *argv1)
 {
 	ssize_t		bytes;
 	char		buff[BUFF_SIZE];
@@ -106,6 +125,9 @@ t_tris		*ft_read_file_des(int fd)
 
 	head = NULL;
 	symbol = 'A';
+	ft_check_last(fd);      //Permet de verifier que l'on ne fini pas sur une ligne vide (ou plusieurs)
+	if ((fd = open(argv1, O_RDONLY | O_APPEND)) < 0) //Open again car close dans la func. ft_check_last
+		ft_exit_error();
 	while ((bytes = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[bytes] = '\0';
@@ -113,6 +135,6 @@ t_tris		*ft_read_file_des(int fd)
 		if (symbol > 'Z')
 			ft_exit_error();
 		ft_push_tetris(buff, &head, symbol++);
-	}
+	}	
 	return (head);
 }
