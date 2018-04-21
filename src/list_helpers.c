@@ -26,9 +26,9 @@ void		ft_print_list(t_tris *list)
 		while (i < 4)
 		{
 			ft_putstr("[");
-			ft_putnbr(list->coords[i][0]);
+			ft_putnbr(list->xy[i][0]);
 			ft_putstr(",");
-			ft_putnbr(list->coords[i][1]);
+			ft_putnbr(list->xy[i][1]);
 			ft_putstr("]");
 			++i;
 		}
@@ -42,21 +42,23 @@ void		ft_print_list(t_tris *list)
 /*
 **	Append an element to the list(Mr Obvious)
 */
-void		ft_lst_push_back(t_tris **head, int8_t tab[4][2], uint8_t symbol)
+void		ft_lst_push_back(t_tris **head, int8_t **xy, uint8_t symbol)
 {
 	t_tris *node;
 
 	if (!*head)
 	{
-		*head = ft_lst_new_elem(tab, symbol);
+		*head = ft_lst_new_elem(xy, symbol);
 		(*head)->next = NULL;
+		(*head)->prev = NULL;
 	}
 	else
 	{
 		node = *head;
 		while (node->next)
 			node = node->next;
-		node->next = ft_lst_new_elem(tab, symbol);
+		node->next = ft_lst_new_elem(xy, symbol);
+		node->next->prev = node;
 		node->next->next = NULL;
 	}
 }
@@ -64,16 +66,16 @@ void		ft_lst_push_back(t_tris **head, int8_t tab[4][2], uint8_t symbol)
 /*
 **	Create a node (Mr Obvious)
 */
-t_tris		*ft_lst_new_elem(int8_t tab[4][2], uint8_t symbol)
+t_tris		*ft_lst_new_elem(int8_t **xy, uint8_t symbol)
 {
 	t_tris	*node;
 
 	if (!(node = (t_tris*)malloc(sizeof(*node))))
 		return (0);
-	ft_memcpy(node->coords, tab, sizeof(int8_t) * 8);
+	node->xy = xy;
 	node->symbol = symbol;
-	node->placed = 0;
 	node->next = NULL;
+	node->prev = NULL;
 	return (node);
 }
 

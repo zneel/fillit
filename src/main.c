@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 		ft_exit_error();
 	tetriminos = ft_read_file_des(fd);
 	size = ft_lstlen(tetriminos);
-	size = 16;
 	map = ft_map(size);
 	ft_print_list(tetriminos);
 	map = ft_resolve(map, tetriminos);
