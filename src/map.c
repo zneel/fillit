@@ -15,20 +15,20 @@
 /*
 **  Return size of the map from the number of tetriminos
 */
-uint16_t	ft_size_map(uint16_t size)
+int	ft_size_map(int size)
 {
 	int i;
 
 	i = 0;
 	while (ft_sqrt(size * 4 + i) == 0)
 		++i;
-	return (uint16_t)ft_sqrt((size * 4 + i));
+	return ft_sqrt((size * 4 + i));
 }
 
 /*
 **  Fill the map with dots and \n according to number of tetriminos given
 */
-void		ft_fill_map(char **map, uint16_t sqrt)
+void		ft_fill_map(char **map, int sqrt)
 {
 	size_t		i;
 	size_t		j;
@@ -47,16 +47,16 @@ void		ft_fill_map(char **map, uint16_t sqrt)
 /*
 **	Return a malloc'd map from number of tetriminos
 */
- t_map		*ft_map(uint16_t size)
+ t_map		*ft_map(int size)
 {
 	t_map		*map;
 	size_t		i;
-	uint16_t	sqrt;
+	int	sqrt;
 
 	i = 0;
 	if (!(map = (t_map*)malloc(sizeof(t_map))))
 		return (NULL);
-	sqrt = (uint16_t)ft_size_map(size);
+	sqrt = ft_size_map(size);
 	if (!(map->map = (char**)ft_memalloc((sizeof(char *) * (sqrt + 1)))))
 					return (NULL);
 	while (i < sqrt)
@@ -74,10 +74,10 @@ void		ft_fill_map(char **map, uint16_t sqrt)
 */
 t_map		*ft_resize_map(t_map *map)
 {
-	uint16_t size;
+	int size;
 
 	free(map);
-	size = ft_map_len(map->map);
+	size = ft_map_len(map->map) + 1;
 	return ft_map(size);
 }
 
@@ -89,10 +89,10 @@ void	ft_print_map(char **map)
 		ft_putstr(map[i++]);
 }
 
-uint8_t ft_map_len(char **map)
+size_t ft_map_len(char **map)
 {
 	size_t  i;
-	uint8_t res;
+	size_t 	res;
 
 	i = 0;
 	res = 0;

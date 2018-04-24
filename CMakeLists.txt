@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.9)
 project(fillit)
 
-set(CMAKE_CXX_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(.)
 include_directories(includes)
@@ -85,5 +85,4 @@ add_executable(fillit
         src/main.c
         src/map.c
         src/parse.c
-        src/parse_helpers.c
         src/solve.c)

@@ -12,26 +12,26 @@
 
 #include "fillit.h"
 
-inline void	ft_exit_error(void)
+void	ft_exit_error(void)
 {
 	ft_putstr(ERR_READ);
 	exit(1);
 }
 
-inline void	ft_display_usage_no_file(void)
+void	ft_display_usage_no_file(void)
 {
 	ft_putstr(USAGE);
 	exit(1);
 }
 
-inline void	ft_display_usage_too_mny_args(void)
+void	ft_display_usage_too_mny_args(void)
 {
 	ft_putstr("\033[31mToo many arguments\n");
 	ft_putstr(USAGE);
 	exit(1);
 }
 
-inline void	ft_exit_invalid_piece(void)
+void	ft_exit_invalid_piece(void)
 {
 	ft_putstr(NOT_VALID_TTRIS);
 	exit(1);

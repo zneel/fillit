@@ -16,13 +16,11 @@ t_map	*ft_solve(t_map *map, t_tris *list)
 {
 	t_point *pt;
 	size_t map_len;
-	t_tris *head;
 
 	if(!(pt = (t_point*)malloc(sizeof(t_point))))
 		return (NULL);
 	pt->x = -1;
 	pt->y = 0;
-	head = list;
 	map_len = ft_map_len(map->map);
 	while (list)
 	{
@@ -36,7 +34,9 @@ t_map	*ft_solve(t_map *map, t_tris *list)
 			}
 			else if (pt->y > map_len && list->symbol == 'A')
 			{
-				list = head;
+				ft_putstr("resizing\n");
+				ft_print_map(map->map);
+				ft_putchar('\n');
 				map = ft_resize_map(map);
 				pt->x = 0;
 				pt->y = 0;
@@ -44,7 +44,7 @@ t_map	*ft_solve(t_map *map, t_tris *list)
 			else if (pt->y > map_len)
 			{
 				list = list->prev;
-				pt = ft_remove_ttris(&map, list->symbol - (char)1);
+				pt = ft_remove_ttris(&map, list->symbol - 1);
 			}
 		}
 		ft_place(map, list, pt->x, pt->y);
@@ -53,7 +53,7 @@ t_map	*ft_solve(t_map *map, t_tris *list)
 	return (map);
 }
 
-int8_t	ft_check(t_map *map, t_tris *tris, int8_t x, int8_t y)
+int	ft_check(t_map *map, t_tris *tris, int y, int x)
 {
 	size_t i;
 	size_t map_len;
@@ -64,31 +64,28 @@ int8_t	ft_check(t_map *map, t_tris *tris, int8_t x, int8_t y)
 		return (FALSE);
 	while (i < 4)
 	{
-		if (x + tris->xy[i][0] < 0
-			|| y + tris->xy[i][1] < 0
-			|| x + tris->xy[i][0] >= map_len
-				|| y + tris->xy[i][1] >= map_len)
+		if (x + tris->xy[i][1] < 0
+			|| y + tris->xy[i][0] < 0
+			|| x + tris->xy[i][1] >= map_len
+				|| y + tris->xy[i][0] >= map_len)
 			return (FALSE);
-		if (map->map[x + tris->xy[i][0]][y + tris->xy[i][1]] != '.')
+		if (map->map[x + tris->xy[i][1]][y + tris->xy[i][0]] != '.')
 				return (FALSE);
 		++i;
 	}
 	return (TRUE);
 }
 
-void	ft_place(t_map *map, t_tris *tris, int8_t x, int8_t y)
+void	ft_place(t_map *map, t_tris *tris, int y, int x)
 {
 	size_t i;
 
 	i = 0;
 	while (i < 4)
 	{
-		map->map[x + tris->xy[i][0]][y + tris->xy[i][1]] = tris->symbol;
+		map->map[x + tris->xy[i][1]][y + tris->xy[i][0]] = tris->symbol;
 		++i;
 	}
-	ft_putstr("PLACING............\n");
-	ft_print_map(map->map);
-	ft_putstr("\n");
 }
 
 t_point *ft_remove_ttris(t_map **map, char c)

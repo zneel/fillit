@@ -41,7 +41,7 @@ void		ft_print_list(t_tris *list)
 /*
 **	Append an element to the list(Mr Obvious)
 */
-void		ft_lst_push_back(t_tris **head, int8_t xy[4][2], uint8_t symbol)
+void		ft_lst_push_back(t_tris **head, int xy[4][2], int symbol)
 {
 	t_tris *node;
 
@@ -65,13 +65,13 @@ void		ft_lst_push_back(t_tris **head, int8_t xy[4][2], uint8_t symbol)
 /*
 **	Create a node (Mr Obvious)
 */
-t_tris		*ft_lst_new_elem(int8_t xy[4][2], uint8_t symbol)
+t_tris		*ft_lst_new_elem(int xy[4][2], int symbol)
 {
 	t_tris	*node;
 
 	if (!(node = (t_tris*)malloc(sizeof(*node))))
 		return (0);
-	ft_memcpy(node->xy, xy, sizeof(uint8_t) * 8);
+	ft_memcpy(node->xy, xy, sizeof(int) * 8);
 	node->symbol = symbol;
 	node->next = NULL;
 	node->prev = NULL;
@@ -81,9 +81,9 @@ t_tris		*ft_lst_new_elem(int8_t xy[4][2], uint8_t symbol)
 /*
 **	Return len of the list (Mr Obvious)
 */
-uint16_t	ft_lstlen(t_tris *list)
+int	ft_lstlen(t_tris *list)
 {
-	uint16_t len;
+	int len;
 
 	len = 0;
 	while (list)

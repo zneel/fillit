@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	int			fd;
 	t_tris		*tetriminos;
-	uint16_t	size;
+	int			size;
 	t_map		*map;
 
 	if (argc > 2)

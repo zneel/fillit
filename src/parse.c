@@ -46,13 +46,13 @@ void		ft_tetris_valid(char *buff)
 /*
 **	Push a tetris (node) to the linked list with the correct coordonates
 */
-void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
+void		ft_push_tetris(char *buff, t_tris **head, int symbol)
 {
 	size_t	i;
 	size_t	piece;
-	int8_t 	xy[4][2];
-	int8_t	y;
-	int8_t	x;
+	int 	xy[4][2];
+	int	y;
+	int	x;
 
 	i = 0;
 	piece = 0;
@@ -81,10 +81,10 @@ void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
 /*
 ** Reformat coordonates to the most upper left
 */
-void		ft_reformat_coords(int8_t (*xy)[4][2])
+void		ft_reformat_coords(int (*xy)[4][2])
 {
 	size_t i;
-	int8_t or[2];
+	int or[2];
 
 	i = 0;
 	or[0] = (*xy)[0][0];
