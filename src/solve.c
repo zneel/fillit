@@ -12,28 +12,14 @@
 
 #include "fillit.h"
 
-/*
-** 1_ need to check if i can place the tetrimino on the map
-** 2_ if yes -> place it and go next tetrimino
-** 3_ if no -> increment its coords until map len in x and y
-** 4_ if it fits -> place it with new coords and go next tetrimino
-** 5_ if not increase map size and go back to 1_
-*/
-
-t_map	*ft_resolve(t_map *map, t_tris *list)
-{
-	while(ft_solve(map, list) == 0)
-		;
-	return (map);
-}
-
-int8_t	ft_solve(t_map *map, t_tris *list)
+t_map	*ft_solve(t_map *map, t_tris *list)
 {
 	t_point *pt;
 	size_t map_len;
 	t_tris *head;
 
-	pt = (t_point*)malloc(sizeof(t_point));
+	if(!(pt = (t_point*)malloc(sizeof(t_point))))
+		return (NULL);
 	pt->x = -1;
 	pt->y = 0;
 	head = list;
@@ -45,19 +31,17 @@ int8_t	ft_solve(t_map *map, t_tris *list)
 			pt->x++;
 			if (pt->x > map_len)
 			{
-				ft_putnbr(pt->x);
-				ft_putstr("x over map_len... incrementing y and reseting x\n");
 				pt->x = 0;
 				pt->y++;
 			}
-			if (pt->y > map_len && list->symbol == 'A')
+			else if (pt->y > map_len && list->symbol == 'A')
 			{
 				list = head;
 				map = ft_resize_map(map);
 				pt->x = 0;
 				pt->y = 0;
 			}
-			if (pt->y > map_len)
+			else if (pt->y > map_len)
 			{
 				list = list->prev;
 				pt = ft_remove_ttris(&map, list->symbol - (char)1);
@@ -66,7 +50,7 @@ int8_t	ft_solve(t_map *map, t_tris *list)
 		ft_place(map, list, pt->x, pt->y);
 		list = list->next;
 	}
-	return (TRUE);
+	return (map);
 }
 
 int8_t	ft_check(t_map *map, t_tris *tris, int8_t x, int8_t y)
@@ -80,29 +64,31 @@ int8_t	ft_check(t_map *map, t_tris *tris, int8_t x, int8_t y)
 		return (FALSE);
 	while (i < 4)
 	{
-		if (x + tris->xy[i][1] < 0
-			|| y + tris->xy[i][0] < 0
-			|| x + tris->xy[i][1] >= map_len
-				|| y + tris->xy[i][0] >= map_len)
+		if (x + tris->xy[i][0] < 0
+			|| y + tris->xy[i][1] < 0
+			|| x + tris->xy[i][0] >= map_len
+				|| y + tris->xy[i][1] >= map_len)
 			return (FALSE);
-		if (map->map[x + tris->xy[i][1]][y + tris->xy[i][0]] != '.')
+		if (map->map[x + tris->xy[i][0]][y + tris->xy[i][1]] != '.')
 				return (FALSE);
 		++i;
 	}
 	return (TRUE);
 }
 
-int8_t ft_place(t_map *map, t_tris *tris, int8_t x, int8_t y)
+void	ft_place(t_map *map, t_tris *tris, int8_t x, int8_t y)
 {
 	size_t i;
 
 	i = 0;
 	while (i < 4)
 	{
-		map->map[x + tris->xy[i][1]][y + tris->xy[i][0]] = tris->symbol;
+		map->map[x + tris->xy[i][0]][y + tris->xy[i][1]] = tris->symbol;
 		++i;
 	}
-	return (FALSE);
+	ft_putstr("PLACING............\n");
+	ft_print_map(map->map);
+	ft_putstr("\n");
 }
 
 t_point *ft_remove_ttris(t_map **map, char c)
@@ -116,7 +102,8 @@ t_point *ft_remove_ttris(t_map **map, char c)
 	i = 0;
 	found = 0;
 	map_len = ft_map_len((*map)->map);
-	pt = (t_point*)malloc(sizeof(t_point));
+	if(!(pt = (t_point*)malloc(sizeof(t_point))))
+		return (NULL);
 	while(i < map_len)
 	{
 		j = 0;

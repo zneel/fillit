@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	size = ft_lstlen(tetriminos);
 	map = ft_map(size);
 	ft_print_list(tetriminos);
-	map = ft_resolve(map, tetriminos);
+	map = ft_solve(map, tetriminos);
 	ft_print_map(map->map);
 	free(map->map);
 	free(map);

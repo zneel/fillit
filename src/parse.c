@@ -62,7 +62,7 @@ void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
 	{
 		if (buff[i] == CHAR_SEP)
 		{
-			x = 0;
+			x = -1;
 			y += 1;
 		}
 		else if (buff[i] == CHAR_TTRIS)
@@ -74,30 +74,27 @@ void		ft_push_tetris(char *buff, t_tris **head, uint8_t symbol)
 		x++;
 		i++;
 	}
-	ft_lst_push_back(head, ft_reformat_coords(xy), symbol);
+	ft_reformat_coords(&xy);
+	ft_lst_push_back(head, xy, symbol);
 }
 
 /*
 ** Reformat coordonates to the most upper left
 */
-int8_t	**ft_reformat_coords(int8_t xy[4][2])
+void		ft_reformat_coords(int8_t (*xy)[4][2])
 {
 	size_t i;
 	int8_t or[2];
-	int8_t **res;
 
 	i = 0;
-	or[0] = xy[0][0];
-	or[1] = xy[0][1];
-	if (!(res = (int8_t)malloc(sizeof(int8_t*) * 4)))
-		return (NULL);
+	or[0] = (*xy)[0][0];
+	or[1] = (*xy)[0][1];
 	while(i < 4)
 	{
-		res[i][0] = xy[i][0] - or[0];
-		res[i][1] = xy[i][1] - or[1];
+		(*xy)[i][0] = (*xy)[i][0] - or[0];
+		(*xy)[i][1] = (*xy)[i][1] - or[1];
 		++i;
 	}
-	return (res);
 }
 
 /*
