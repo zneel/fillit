@@ -14,10 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	int			fd;
-	t_tris		*tetriminos;
-	int			size;
-	t_map		*map;
+	int		fd;
+	t_tris	*tetriminos;
+	char	**map;
 
 	if (argc > 2)
 		ft_display_usage_too_mny_args();
@@ -25,13 +24,9 @@ int	main(int argc, char **argv)
 		ft_display_usage_no_file();
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_exit_error();
-	tetriminos = ft_read_file_des(fd);
-	size = ft_lstlen(tetriminos);
-	map = ft_map(size);
-	ft_print_list(tetriminos);
-	map = ft_solve(map, tetriminos);
-	ft_print_map(map->map);
-	free(map->map);
+	tetriminos = ft_read(fd);
+	map = ft_solve(tetriminos, 2);
+	ft_print_map(map);
 	free(map);
 	ft_lstfree(tetriminos);
 	close(fd);

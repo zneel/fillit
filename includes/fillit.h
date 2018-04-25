@@ -31,31 +31,23 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct		s_point
-{
-	int x;
-	int y;
-}					t_point;
-
-typedef	struct		s_map
-{
-	char			**map;
-}					t_map;
-
 typedef struct 		s_tris
 {
-	int			symbol;
-	int			xy[4][2];
+	int				symbol;
+	int				xy[4][2];
+	int 			x;
+	int 			y;
 	struct s_tris	*next;
-	struct s_tris	*prev;
 }					t_tris;
 
-t_tris	*ft_read_file_des(int fd);
+t_tris	*ft_read(int fd);
 t_tris	*ft_lst_new_elem(int xy[4][2], int symbol);
-t_map	*ft_resize_map(t_map *map);
-t_map	*ft_map(int size);
-t_map	*ft_solve(t_map *map, t_tris *list);
-t_point	*ft_remove_ttris(t_map **map, char c);
+
+char	**ft_resize_map(char **map);
+char	**ft_map(char **map, int size);
+char	**ft_solve(t_tris *current, int map_len);
+char 	**ft_remove_piece(t_tris *piece, char **map, int map_len);
+char 	**ft_insert_piece(t_tris *current, char **map);
 
 void	ft_lst_push_back(t_tris **head, int xy[4][2], int symbol);
 void	ft_push_tetris(char *buffer, t_tris **head, int symbol);
@@ -69,13 +61,11 @@ void	ft_fill_map(char **map, int sqrt);
 void    ft_tetris_valid(char *buff);
 void	ft_print_map(char **map);
 void	ft_reformat_coords(int (*xy)[4][2]);
-void	ft_place(t_map *map, t_tris *tris, int x, int y);
-
 
 int		ft_lstlen(t_tris *list);
 int		ft_size_map(int size);
 size_t 	ft_map_len(char **map);
-int		ft_check(t_map *map, t_tris *tris, int x, int y);
-int		ft_place_tetris(t_map *map, t_tris *tetris_l);
+int		ft_check(t_tris *current, char **map, int map_len);
+int		ft_place_piece(char **map, int map_len, t_tris *current);
 
 #endif

@@ -49,7 +49,6 @@ void		ft_lst_push_back(t_tris **head, int xy[4][2], int symbol)
 	{
 		*head = ft_lst_new_elem(xy, symbol);
 		(*head)->next = NULL;
-		(*head)->prev = NULL;
 	}
 	else
 	{
@@ -57,8 +56,6 @@ void		ft_lst_push_back(t_tris **head, int xy[4][2], int symbol)
 		while (node->next)
 			node = node->next;
 		node->next = ft_lst_new_elem(xy, symbol);
-		node->next->prev = node;
-		node->next->next = NULL;
 	}
 }
 
@@ -72,9 +69,10 @@ t_tris		*ft_lst_new_elem(int xy[4][2], int symbol)
 	if (!(node = (t_tris*)malloc(sizeof(*node))))
 		return (0);
 	ft_memcpy(node->xy, xy, sizeof(int) * 8);
+	node->x = 0;
+	node->y = 0;
 	node->symbol = symbol;
 	node->next = NULL;
-	node->prev = NULL;
 	return (node);
 }
 

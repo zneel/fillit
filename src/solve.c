@@ -12,113 +12,101 @@
 
 #include "fillit.h"
 
-t_map	*ft_solve(t_map *map, t_tris *list)
+char	**ft_solve(t_tris *current, int map_len)
 {
-	t_point *pt;
-	size_t map_len;
+	char **map;
 
-	if(!(pt = (t_point*)malloc(sizeof(t_point))))
-		return (NULL);
-	pt->x = -1;
-	pt->y = 0;
-	map_len = ft_map_len(map->map);
-	while (list)
+	map = ft_map(map, map_len);
+	while (ft_place_piece(map, map_len, current) == 0)
 	{
-		while (ft_check(map, list, pt->x, pt->y) == 0)
-		{
-			pt->x++;
-			if (pt->x > map_len)
-			{
-				pt->x = 0;
-				pt->y++;
-			}
-			else if (pt->y > map_len && list->symbol == 'A')
-			{
-				ft_putstr("resizing\n");
-				ft_print_map(map->map);
-				ft_putchar('\n');
-				map = ft_resize_map(map);
-				pt->x = 0;
-				pt->y = 0;
-			}
-			else if (pt->y > map_len)
-			{
-				list = list->prev;
-				pt = ft_remove_ttris(&map, list->symbol - 1);
-			}
-		}
-		ft_place(map, list, pt->x, pt->y);
-		list = list->next;
+		map_len++;
+		current->x = 0;
+		current->y = 0;
+		map = ft_map(map, map_len);
 	}
 	return (map);
 }
 
-int	ft_check(t_map *map, t_tris *tris, int y, int x)
+int	ft_check(t_tris *current, char **map, int map_len)
 {
 	size_t i;
-	size_t map_len;
 
 	i = 0;
-	map_len = ft_map_len(map->map);
-	if (x < 0)
+	if (current->x < 0)
 		return (FALSE);
 	while (i < 4)
 	{
-		if (x + tris->xy[i][1] < 0
-			|| y + tris->xy[i][0] < 0
-			|| x + tris->xy[i][1] >= map_len
-				|| y + tris->xy[i][0] >= map_len)
+		if (current->x + current->xy[i][0] < 0
+			|| current->y + current->xy[i][1] < 0
+			|| current->x + current->xy[i][0] >= map_len
+				|| current->y + current->xy[i][1] >= map_len)
 			return (FALSE);
-		if (map->map[x + tris->xy[i][1]][y + tris->xy[i][0]] != '.')
+		if (map[current->x + current->xy[i][0]][current->y + current->xy[i][1]]
+			!= '.')
 				return (FALSE);
 		++i;
 	}
 	return (TRUE);
 }
 
-void	ft_place(t_map *map, t_tris *tris, int y, int x)
+char 	**ft_insert_piece(t_tris *current, char **map)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	while (i < 4)
 	{
-		map->map[x + tris->xy[i][1]][y + tris->xy[i][0]] = tris->symbol;
-		++i;
+		map[current->x + current->xy[i][0]][current->y + current->xy[i][1]]
+			= (char) current->symbol;
+				++i;
 	}
+	return (map);
 }
 
-t_point *ft_remove_ttris(t_map **map, char c)
+int		ft_place_piece(char **map, int map_len, t_tris *current)
 {
-	uint8_t	i;
-	uint8_t j;
-	uint8_t found;
-	size_t 	map_len;
-	t_point *pt;
+	if (current)
+	{
+		while (current->x * current->y < map_len * map_len)
+		{
+			if (ft_check(current, map, map_len) == 1)
+			{
+				map = ft_insert_piece(current, map);
+				if (ft_place_piece(map, map_len, current->next) == 1)
+					return (1);
+				map = ft_remove_piece(current, map, map_len);
+			}
+			if (current->x < map_len)
+				current->x++;
+			else
+			{
+				current->x = 0;
+				current->y++;
+			}
+		}
+		current->x = 0;
+		current->y = 0;
+		return (0);
+	}
+	return (1);
+}
+
+char **ft_remove_piece(t_tris *piece, char **map, int map_len)
+{
+	size_t	i;
+	size_t 	j;
 
 	i = 0;
-	found = 0;
-	map_len = ft_map_len((*map)->map);
-	if(!(pt = (t_point*)malloc(sizeof(t_point))))
-		return (NULL);
 	while(i < map_len)
 	{
 		j = 0;
 		while (j < map_len)
 		{
-			if ((*map)->map[i][j] == c)
-			{
-				if (found == 0)
-				{
-					found = 1;
-					pt->x = j;
-					pt->y = i;
-				}
-				(*map)->map[i][j] = '.';
-			}
+			if (map[i][j] == piece->symbol)
+				map[i][j] = '.';
 			++j;
 		}
 		++i;
 	}
-	return (pt);
+	return (map);
 }

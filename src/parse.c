@@ -100,7 +100,7 @@ void		ft_reformat_coords(int (*xy)[4][2])
 /*
 **	Return a linked list from the fd given
 */
-t_tris		*ft_read_file_des(int fd)
+t_tris		*ft_read(int fd)
 {
 	ssize_t		bytes;
 	char		buff[BUFF_SIZE];

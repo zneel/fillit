@@ -27,7 +27,6 @@ SRC_BASE		=	main.c			\
 					parse.c			\
 					error.c			\
 					list_helpers.c	\
-					parse_helpers.c \
 					solve.c			\
 					map.c
 

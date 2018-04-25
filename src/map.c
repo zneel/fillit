@@ -47,38 +47,33 @@ void		ft_fill_map(char **map, int sqrt)
 /*
 **	Return a malloc'd map from number of tetriminos
 */
- t_map		*ft_map(int size)
+char	**ft_map(char **map, int size)
 {
-	t_map		*map;
-	size_t		i;
-	int	sqrt;
+	size_t	i;
+	int		sqrt;
 
 	i = 0;
-	if (!(map = (t_map*)malloc(sizeof(t_map))))
-		return (NULL);
 	sqrt = ft_size_map(size);
-	if (!(map->map = (char**)ft_memalloc((sizeof(char *) * (sqrt + 1)))))
-					return (NULL);
+	map = ft_memalloc((sizeof(char *) * sqrt + 1));
 	while (i < sqrt)
 	{
-		if (!(map->map[i] = (char*)ft_memalloc((sizeof(char) * (sqrt + 2)))))
-					return (NULL);
+		map[i] = ft_memalloc((sizeof(char) * sqrt + 1));
 		++i;
 	}
-	ft_fill_map(map->map, sqrt);
+	ft_fill_map(map, sqrt);
 	return (map);
 }
 
 /*
 **	Return a map bigger map
 */
-t_map		*ft_resize_map(t_map *map)
+char **ft_resize_map(char **map)
 {
 	int size;
 
 	free(map);
-	size = ft_map_len(map->map) + 1;
-	return ft_map(size);
+	size = (int)ft_map_len(map) + 1;
+	return ft_map(map, size);
 }
 
 void	ft_print_map(char **map)
@@ -92,14 +87,9 @@ void	ft_print_map(char **map)
 size_t ft_map_len(char **map)
 {
 	size_t  i;
-	size_t 	res;
 
 	i = 0;
-	res = 0;
 	while (map[0][i] != '\n')
-	{
-		++res;
 		++i;
-	}
-	return (res);
+	return (i);
 }
