@@ -69,8 +69,6 @@ t_tris		*ft_lst_new_elem(int xy[4][2], int symbol)
 	if (!(node = (t_tris*)malloc(sizeof(*node))))
 		return (0);
 	ft_memcpy(node->xy, xy, sizeof(int) * 8);
-	node->x = 0;
-	node->y = 0;
 	node->symbol = symbol;
 	node->next = NULL;
 	return (node);

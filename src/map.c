@@ -56,10 +56,7 @@ char	**ft_map(char **map, int size)
 	sqrt = ft_size_map(size);
 	map = ft_memalloc((sizeof(char *) * sqrt + 1));
 	while (i < sqrt)
-	{
-		map[i] = ft_memalloc((sizeof(char) * sqrt + 1));
-		++i;
-	}
+		map[i++] = ft_memalloc((sizeof(char) * sqrt));
 	ft_fill_map(map, sqrt);
 	return (map);
 }
@@ -67,13 +64,10 @@ char	**ft_map(char **map, int size)
 /*
 **	Return a map bigger map
 */
-char **ft_resize_map(char **map)
+char **ft_resize_map(char **map, int map_len)
 {
-	int size;
-
 	free(map);
-	size = (int)ft_map_len(map) + 1;
-	return ft_map(map, size);
+	return ft_map(map, map_len);
 }
 
 void	ft_print_map(char **map)

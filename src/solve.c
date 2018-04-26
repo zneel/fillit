@@ -12,80 +12,79 @@
 
 #include "fillit.h"
 
-char	**ft_solve(t_tris *current, int map_len)
+char	**ft_solve(t_tris *current, int map_len, t_point *xy)
 {
 	char **map;
 
 	map = ft_map(map, map_len);
-	while (ft_place_piece(map, map_len, current) == 0)
+	while (ft_place_piece(map, map_len, current, xy) == 0)
 	{
+		ft_putchar('\n');
+		ft_print_map(map);
+		ft_putchar('\n');
 		map_len++;
-		current->x = 0;
-		current->y = 0;
-		map = ft_map(map, map_len);
+		map = ft_resize_map(map, map_len);
+		xy->x = 0;
+		xy->y = 0;
 	}
 	return (map);
 }
 
-int	ft_check(t_tris *current, char **map, int map_len)
+int	ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 {
 	size_t i;
 
 	i = 0;
-	if (current->x < 0)
+	if (xy->x < 0)
 		return (FALSE);
 	while (i < 4)
 	{
-		if (current->x + current->xy[i][0] < 0
-			|| current->y + current->xy[i][1] < 0
-			|| current->x + current->xy[i][0] >= map_len
-				|| current->y + current->xy[i][1] >= map_len)
+		if (xy->x + current->xy[i][1] < 0
+			|| xy->y + current->xy[i][0] < 0
+			|| xy->x + current->xy[i][1] >= map_len
+				|| xy->y + current->xy[i][0] >= map_len)
 			return (FALSE);
-		if (map[current->x + current->xy[i][0]][current->y + current->xy[i][1]]
-			!= '.')
+		if (map[xy->x + current->xy[i][1]][xy->y + current->xy[i][0]] != '.')
 				return (FALSE);
 		++i;
 	}
 	return (TRUE);
 }
 
-char 	**ft_insert_piece(t_tris *current, char **map)
+char 	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
 {
 	int i;
 
 	i = 0;
 	while (i < 4)
 	{
-		map[current->x + current->xy[i][0]][current->y + current->xy[i][1]]
-			= (char) current->symbol;
+		map[xy->x + current->xy[i][1]][xy->y + current->xy[i][0]] = (char) current->symbol;
 				++i;
 	}
 	return (map);
 }
 
-int		ft_place_piece(char **map, int map_len, t_tris *current)
+int		ft_place_piece(char **map, int map_len, t_tris *current, t_point *xy)
 {
 	if (current)
 	{
-		while (current->x * current->y < map_len * map_len)
+		while (xy->y < map_len)
 		{
-			if (ft_check(current, map, map_len) == 1)
+			if (ft_check(current, map, map_len, xy) == 1)
 			{
-				map = ft_insert_piece(current, map);
-				if (ft_place_piece(map, map_len, current->next) == 1)
+				map = ft_insert_piece(current, map, xy);
+				if (ft_place_piece(map, map_len, current->next, xy) == 1)
 					return (1);
 				map = ft_remove_piece(current, map, map_len);
 			}
-			if (current->x < map_len)
-				current->x++;
+			if (xy->x < map_len)
+				xy->x++;
 			else
 			{
-				current->x = 0;
-				current->y++;
+				xy->x = 0;
+				xy->y++;
 			}
 		}
-		current->x = 0;
-		current->y = 0;
 		return (0);
 	}
 	return (1);

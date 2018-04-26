@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_tris	*tetriminos;
+	t_point	*xy;
 	char	**map;
 
 	if (argc > 2)
@@ -24,8 +25,12 @@ int	main(int argc, char **argv)
 		ft_display_usage_no_file();
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_exit_error();
+	if (!(xy =(t_point*)malloc(sizeof(t_point))))
+		return (0);
+	xy->x = 0;
+	xy->y = 0;
 	tetriminos = ft_read(fd);
-	map = ft_solve(tetriminos, 2);
+	map = ft_solve(tetriminos, 2, xy);
 	ft_print_map(map);
 	free(map);
 	ft_lstfree(tetriminos);
