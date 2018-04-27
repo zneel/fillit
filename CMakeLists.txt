@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.9)
 project(fillit)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_FLAGS "-O3")
 
 include_directories(.)
 include_directories(includes)

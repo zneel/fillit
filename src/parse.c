@@ -67,8 +67,8 @@ void		ft_push_tetris(char *buff, t_tris **head, int symbol)
 		}
 		else if (buff[i] == CHAR_TTRIS)
 		{
-			xy[piece][0] = x;
-			xy[piece][1] = y;
+			xy[piece][0] = y;
+			xy[piece][1] = x;
 			piece++;
 		}
 		x++;

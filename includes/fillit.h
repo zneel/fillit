@@ -51,7 +51,7 @@ char 	**ft_resize_map(char **map, int map_len);
 char	**ft_map(char **map, int size);
 char 	**ft_remove_piece(t_tris *piece, char **map, int map_len);
 char 	**ft_insert_piece(t_tris *current, char **map, t_point *xy);
-char	**ft_solve(t_tris *current, int map_len, t_point *xy);
+char	**ft_solve(t_tris *current, int map_len);
 
 void	ft_lst_push_back(t_tris **head, int xy[4][2], int symbol);
 void	ft_push_tetris(char *buffer, t_tris **head, int symbol);
@@ -67,9 +67,7 @@ void	ft_print_map(char **map);
 void	ft_reformat_coords(int (*xy)[4][2]);
 
 int		ft_lstlen(t_tris *list);
-int		ft_size_map(int size);
-size_t 	ft_map_len(char **map);
 int		ft_check(t_tris *current, char **map, int map_len, t_point *xy);
-int		ft_place_piece(char **map, int map_len, t_tris *current, t_point *xy);
+int		ft_place_piece(char **map, int map_len, t_tris *current);
 
 #endif
