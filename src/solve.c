@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/27 12:01:50 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/27 13:31:01 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**ft_solve(t_tris *current, int map_len)
 {
-	char **map;
+	register char **map;
 
 	map = NULL;
 	map = ft_map(map, map_len);
@@ -28,7 +28,7 @@ char	**ft_solve(t_tris *current, int map_len)
 
 int	ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 {
-	size_t i;
+	register size_t i;
 
 	i = 0;
 	if (xy->x < 0)
@@ -49,7 +49,7 @@ int	ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 
 char 	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
 {
-	int i;
+	register int i;
 
 	i = 0;
 	while (i < 4)
@@ -64,6 +64,7 @@ char 	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
 int		ft_place_piece(char **map, int map_len, t_tris *current)
 {
 	t_point xy;
+
 	xy.x = 0;
 	xy.y = 0;
 	if (current)
@@ -91,8 +92,8 @@ int		ft_place_piece(char **map, int map_len, t_tris *current)
 
 char **ft_remove_piece(t_tris *piece, char **map, int map_len)
 {
-	size_t	i;
-	size_t 	j;
+	register size_t	i;
+	register size_t j;
 
 	i = 0;
 	while(i < (size_t)map_len)

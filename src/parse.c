@@ -6,35 +6,33 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/18 18:51:27 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/27 13:31:36 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		ft_tetris_valid(char *buff)
+void	ft_tetris_valid(char *buff)
 {
-	size_t	i;
-	size_t	hash_count;
-	char	*cpy;
+	register size_t	i;
+	register size_t	hash_count;
 
 	i = 0;
 	hash_count = 0;
-	cpy = buff;
-	while (cpy[i])
+	while (buff[i])
 	{
-		if (cpy[i] == CHAR_TTRIS)
+		if (buff[i] == CHAR_TTRIS)
 		{
-			if (cpy[i + 1] != CHAR_TTRIS && cpy[i - 1] != CHAR_TTRIS &&
-					cpy[i + 5] != CHAR_TTRIS && cpy[i - 5] != CHAR_TTRIS)
+			if (buff[i + 1] != CHAR_TTRIS && buff[i - 1] != CHAR_TTRIS &&
+					buff[i + 5] != CHAR_TTRIS && buff[i - 5] != CHAR_TTRIS)
 				ft_exit_invalid_piece();
 		}
-		if (cpy[i] == CHAR_TTRIS)
+		if (buff[i] == CHAR_TTRIS)
 			++hash_count;
-		if (cpy[i] != CHAR_SEP && cpy[i] != CHAR_TTRIS &&
-				cpy[i] != CHAR_EMPTY)
+		if (buff[i] != CHAR_SEP && buff[i] != CHAR_TTRIS &&
+				buff[i] != CHAR_EMPTY)
 			ft_exit_invalid_piece();
-		if (i % 5 == 4 && cpy[i] != '\n')
+		if (i % 5 == 4 && buff[i] != '\n')
 			ft_exit_invalid_piece();
 		++i;
 	}
@@ -42,17 +40,16 @@ void		ft_tetris_valid(char *buff)
 		ft_exit_invalid_piece();
 }
 
-
 /*
 **	Push a tetris (node) to the linked list with the correct coordonates
 */
-void		ft_push_tetris(char *buff, t_tris **head, int symbol)
+void	ft_push_tetris(char *buff, t_tris **head, int symbol)
 {
-	size_t	i;
-	size_t	piece;
-	int 	xy[4][2];
-	int	y;
-	int	x;
+	register size_t		i;
+	register size_t		piece;
+	int					xy[4][2];
+	register int		y;
+	register int		x;
 
 	i = 0;
 	piece = 0;
@@ -79,12 +76,13 @@ void		ft_push_tetris(char *buff, t_tris **head, int symbol)
 }
 
 /*
-** Reformat coordonates to the most upper left
-*/
-void		ft_reformat_coords(int (*xy)[4][2])
+ ** Reformat coordonates to the most upper left
+ */
+
+void	ft_reformat_coords(int (*xy)[4][2])
 {
-	size_t i;
-	int or[2];
+	register size_t	i;
+	int				or[2];
 
 	i = 0;
 	or[0] = (*xy)[0][0];
@@ -98,14 +96,15 @@ void		ft_reformat_coords(int (*xy)[4][2])
 }
 
 /*
-**	Return a linked list from the fd given
-*/
-t_tris		*ft_read(int fd)
+ **	Return a linked list from the fd given
+ */
+
+t_tris	*ft_read(int fd)
 {
-	ssize_t		bytes;
-	char		buff[BUFF_SIZE];
-	t_tris		*head;
-	uint8_t		symbol;
+	ssize_t				bytes;
+	char				buff[BUFF_SIZE];
+	t_tris				*head;
+	register uint8_t	symbol;
 
 	head = NULL;
 	symbol = 'A';

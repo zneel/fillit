@@ -6,16 +6,25 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:15:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/27 12:03:19 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/04/27 13:47:55 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+int		ft_size(int size)
+{
+	register size_t i;
+
+	i = 0;
+	while (ft_sqrt(size * 4 + i) == 0)
+		++i;
+	return (ft_sqrt(size * 4 + i));
+}
 /*
 **  Fill the map with dots and \n according to number of tetriminos given
 */
-void		ft_fill_map(char **map, int sqrt)
+void	ft_fill_map(char **map, int sqrt)
 {
 	size_t		i;
 	size_t		j;
@@ -49,7 +58,7 @@ char	**ft_map(char **map, int size)
 /*
 **	Return a map bigger map
 */
-char **ft_resize_map(char **map, int map_len)
+char 	**ft_resize_map(char **map, int map_len)
 {
 	free(map);
 	return ft_map(map, map_len);

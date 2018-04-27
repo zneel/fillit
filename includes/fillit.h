@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/04/18 19:43:05 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/04/27 13:48:12 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	ft_reformat_coords(int (*xy)[4][2]);
 int		ft_lstlen(t_tris *list);
 int		ft_check(t_tris *current, char **map, int map_len, t_point *xy);
 int		ft_place_piece(char **map, int map_len, t_tris *current);
-
+int		ft_size(int size);
 #endif

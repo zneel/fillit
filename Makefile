@@ -6,14 +6,14 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/12 17:33:40 by ebouvier          #+#    #+#              #
-#    Updated: 2018/04/17 14:49:07 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/04/27 13:50:30 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC				=	gcc
 NAME			=	fillit
-FLAGS			=	-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror -O3
 
 LIB_PATH		=	libft
 LIB				=	$(LIB_PATH)/libft.a
