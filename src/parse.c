@@ -40,16 +40,26 @@ void	ft_tetris_valid(char *buff)
 		ft_exit_invalid_piece();
 }
 
+void	is_sep(char c, register int *x, register int *y)
+{
+	if (c == CHAR_SEP)
+	{
+		*x = -1;
+		*y = *y + 1;
+	}
+}
+
 /*
 **	Push a tetris (node) to the linked list with the correct coordonates
 */
+
 void	ft_push_tetris(char *buff, t_tris **head, int symbol)
 {
 	register size_t		i;
 	register size_t		piece;
 	int					xy[4][2];
-	register int		y;
-	register int		x;
+	int					y;
+	int					x;
 
 	i = 0;
 	piece = 0;
@@ -57,12 +67,8 @@ void	ft_push_tetris(char *buff, t_tris **head, int symbol)
 	y = 0;
 	while (buff[i])
 	{
-		if (buff[i] == CHAR_SEP)
-		{
-			x = -1;
-			y += 1;
-		}
-		else if (buff[i] == CHAR_TTRIS)
+		is_sep(buff[i], &x, &y);
+		if (buff[i] == CHAR_TTRIS)
 		{
 			xy[piece][0] = y;
 			xy[piece][1] = x;
@@ -76,8 +82,8 @@ void	ft_push_tetris(char *buff, t_tris **head, int symbol)
 }
 
 /*
- ** Reformat coordonates to the most upper left
- */
+**	Reformat coordonates to the most upper left
+*/
 
 void	ft_reformat_coords(int (*xy)[4][2])
 {
@@ -87,7 +93,7 @@ void	ft_reformat_coords(int (*xy)[4][2])
 	i = 0;
 	or[0] = (*xy)[0][0];
 	or[1] = (*xy)[0][1];
-	while(i < 4)
+	while (i < 4)
 	{
 		(*xy)[i][0] = (*xy)[i][0] - or[0];
 		(*xy)[i][1] = (*xy)[i][1] - or[1];
@@ -96,8 +102,8 @@ void	ft_reformat_coords(int (*xy)[4][2])
 }
 
 /*
- **	Return a linked list from the fd given
- */
+**	Return a linked list from the fd given
+*/
 
 t_tris	*ft_read(int fd)
 {

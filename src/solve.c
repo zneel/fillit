@@ -26,7 +26,7 @@ char	**ft_solve(t_tris *current, int map_len)
 	return (map);
 }
 
-int	ft_check(t_tris *current, char **map, int map_len, t_point *xy)
+int		ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 {
 	register size_t i;
 
@@ -47,7 +47,7 @@ int	ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 	return (TRUE);
 }
 
-char 	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
+char	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
 {
 	register int i;
 
@@ -90,13 +90,13 @@ int		ft_place_piece(char **map, int map_len, t_tris *current)
 	return (1);
 }
 
-char **ft_remove_piece(t_tris *piece, char **map, int map_len)
+char	**ft_remove_piece(t_tris *piece, char **map, int map_len)
 {
 	register size_t	i;
 	register size_t j;
 
 	i = 0;
-	while(i < (size_t)map_len)
+	while (i < (size_t)map_len)
 	{
 		j = 0;
 		while (j < (size_t)map_len)

@@ -15,6 +15,7 @@
 /*
 **	Print the t_tris list (Mr Obvious)
 */
+
 void		ft_print_list(t_tris *list)
 {
 	size_t i;
@@ -41,6 +42,7 @@ void		ft_print_list(t_tris *list)
 /*
 **	Append an element to the list(Mr Obvious)
 */
+
 void		ft_lst_push_back(t_tris **head, int xy[4][2], int symbol)
 {
 	t_tris *node;
@@ -62,6 +64,7 @@ void		ft_lst_push_back(t_tris **head, int xy[4][2], int symbol)
 /*
 **	Create a node (Mr Obvious)
 */
+
 t_tris		*ft_lst_new_elem(int xy[4][2], int symbol)
 {
 	t_tris	*node;
@@ -77,7 +80,8 @@ t_tris		*ft_lst_new_elem(int xy[4][2], int symbol)
 /*
 **	Return len of the list (Mr Obvious)
 */
-int	ft_lstlen(t_tris *list)
+
+int			ft_lstlen(t_tris *list)
 {
 	int len;
 
@@ -93,6 +97,7 @@ int	ft_lstlen(t_tris *list)
 /*
 **	Free a list (Mr Obvious)
 */
+
 void		ft_lstfree(t_tris *head)
 {
 	t_tris	*tmp;
