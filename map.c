@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:15:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/05/07 14:55:30 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:45:42 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_size(int size)
 {
-	register	size_t i;
+	int i;
 
 	i = 0;
 	while (ft_sqrt(size * 4 + i) == 0)
@@ -28,8 +28,8 @@ int		ft_size(int size)
 
 void	ft_fill_map(char **map, int sqrt)
 {
-	size_t		i;
-	size_t		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < (size_t)sqrt)
@@ -47,7 +47,7 @@ void	ft_fill_map(char **map, int sqrt)
 
 char	**ft_map(char **map, int size)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	map = ft_memalloc((sizeof(char *) * size + 1));
@@ -69,7 +69,7 @@ char	**ft_resize_map(char **map, int map_len)
 
 void	ft_print_map(char **map)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	while (map[i])

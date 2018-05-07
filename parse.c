@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/05/07 16:16:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:46:45 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_tetris_valid(char *buff)
 		ft_exit_invalid_piece();
 }
 
-void	is_sep(char c, register int *x, register int *y)
+void	is_sep(char c, int *x, int *y)
 {
 	if (c == CHAR_SEP)
 	{
@@ -41,11 +41,11 @@ void	is_sep(char c, register int *x, register int *y)
 
 void	ft_push_tetris(char *buff, t_tris **head, int symbol)
 {
-	register size_t		i;
-	register size_t		piece;
-	int					xy[4][2];
-	int					y;
-	int					x;
+	int	i;
+	int	piece;
+	int	xy[4][2];
+	int	y;
+	int	x;
 
 	i = 0;
 	piece = 0;
@@ -73,8 +73,8 @@ void	ft_push_tetris(char *buff, t_tris **head, int symbol)
 
 void	ft_reformat_coords(int (*xy)[4][2])
 {
-	register size_t	i;
-	int				or[2];
+	int	i;
+	int	or[2];
 
 	i = 0;
 	or[0] = (*xy)[0][0];
@@ -93,11 +93,11 @@ void	ft_reformat_coords(int (*xy)[4][2])
 
 t_tris	*ft_read(int fd)
 {
-	ssize_t				bytes;
-	int					i;
-	char				buff[BUFF_SIZE];
-	t_tris				*head;
-	register uint8_t	symbol;
+	ssize_t	bytes;
+	int		i;
+	char	buff[BUFF_SIZE];
+	t_tris	*head;
+	int		symbol;
 
 	head = NULL;
 	symbol = 'A';

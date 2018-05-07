@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/05/07 15:07:20 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:43:32 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**ft_solve(t_tris *current, int map_len)
 {
-	register char **map;
+	char **map;
 
 	map = NULL;
 	map = ft_map(map, map_len);
@@ -28,7 +28,7 @@ char	**ft_solve(t_tris *current, int map_len)
 
 int		ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 {
-	register size_t i;
+	int i;
 
 	i = 0;
 	if (xy->x < 0)
@@ -50,7 +50,7 @@ int		ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 
 char	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
 {
-	register int i;
+	int i;
 
 	i = 0;
 	while (i < 4)
@@ -93,14 +93,14 @@ int		ft_place_piece(char **map, int map_len, t_tris *current)
 
 char	**ft_remove_piece(t_tris *piece, char **map, int map_len)
 {
-	register size_t	i;
-	register size_t j;
+	int	i;
+	int j;
 
 	i = 0;
-	while (i < (size_t)map_len)
+	while (i < map_len)
 	{
 		j = 0;
-		while (j < (size_t)map_len)
+		while (j < map_len)
 		{
 			if (map[i][j] == piece->symbol)
 				map[i][j] = '.';

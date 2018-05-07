@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 19:25:54 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/17 15:24:29 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:44:03 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void		ft_print_list(t_tris *list)
 {
-	size_t i;
+	int i;
 
 	while (list)
 	{

@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/05/07 16:14:53 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:27:32 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define CHAR_EMPTY '.'
 # define CHAR_TTRIS '#'
 # define CHAR_SEP	'\n'
-# define ERR_READ "open failed for some reasons"
+# define ERR_READ "open failed for some reasons\n"
 # define USAGE "usage: ./fillit source_file\n"
-# define NOT_VALID_TTRIS "error"
+# define NOT_VALID_TTRIS "error\n"
 # define TRUE 1
 # define FALSE 0
 

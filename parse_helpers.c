@@ -6,7 +6,7 @@
 /*   By: ebouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 13:31:41 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/05/07 16:18:01 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:45:01 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	check_contigous(char *buff)
 {
-	register int	i;
-	register int	j;
-	register char	*cpy;
+	int		i;
+	int		j;
+	char	*cpy;
 
 	i = 0;
 	j = 0;
@@ -40,9 +40,9 @@ int	check_contigous(char *buff)
 
 int	check_hash_count(char *buff)
 {
-	register int	i;
-	register int	j;
-	register char	*cpy;
+	int		i;
+	int		j;
+	char	*cpy;
 
 	i = 0;
 	j = 0;
@@ -60,8 +60,8 @@ int	check_hash_count(char *buff)
 
 int	check_chars(char *buff)
 {
-	register int	i;
-	register char	*cpy;
+	int		i;
+	char	*cpy;
 
 	i = 0;
 	cpy = buff;
@@ -77,9 +77,9 @@ int	check_chars(char *buff)
 
 int	check_lines(char *buff)
 {
-	register int	i;
-	register int	j;
-	register char	*cpy;
+	int		i;
+	int		j;
+	char	*cpy;
 
 	i = 0;
 	j = 0;
@@ -97,9 +97,9 @@ int	check_lines(char *buff)
 
 int	count_empty(char *buff)
 {
-	register int	i;
-	register int	j;
-	register char	*cpy;
+	int		i;
+	int		j;
+	char	*cpy;
 
 	i = 0;
 	j = 0;
