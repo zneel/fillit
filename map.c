@@ -6,7 +6,7 @@
 /*   By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 14:15:52 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/27 13:47:55 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 14:55:30 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	ft_fill_map(char **map, int sqrt)
 	{
 		j = 0;
 		while (j < (size_t)sqrt)
-			map[i][j++] = '.';
-		map[i][j] = '\n';
+			map[i][j++] = CHAR_EMPTY;
 		++i;
 	}
 }
@@ -74,5 +73,9 @@ void	ft_print_map(char **map)
 
 	i = 0;
 	while (map[i])
-		ft_putstr(map[i++]);
+	{
+		ft_putstr(map[i]);
+		ft_putchar('\n');
+		++i;
+	}
 }

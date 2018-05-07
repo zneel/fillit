@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:37 by srequiem          #+#    #+#             */
-/*   Updated: 2018/05/02 16:52:57 by srequiem         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:14:53 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
-# include "libft.h"
+# include "libft/includes/libft.h"
 # include <fcntl.h>
 
 # define TETRI_MAP_H 4
@@ -72,4 +72,9 @@ int					ft_check(t_tris *current, char **map, int map_len
 					, t_point *xy);
 int					ft_place_piece(char **map, int map_len, t_tris *current);
 int					ft_size(int size);
+int					check_contigous(char *buff);
+int					check_hash_count(char *buff);
+int					check_chars(char *buff);
+int					check_lines(char *buff);
+int					count_empty(char *buff);
 #endif

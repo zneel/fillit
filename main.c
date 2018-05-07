@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:59 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/27 13:47:37 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:21:31 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_exit_error();
 	tetriminos = ft_read(fd);
+	if (ft_lstlen(tetriminos) == 0)
+		ft_exit_invalid_piece();
 	map = ft_solve(tetriminos, ft_size(ft_lstlen(tetriminos)));
 	ft_print_map(map);
 	free(map);

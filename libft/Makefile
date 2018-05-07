@@ -6,14 +6,14 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/23 18:49:32 by ebouvier          #+#    #+#              #
-#    Updated: 2018/04/15 16:37:26 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/05/07 12:27:11 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-INCLUDES=	./includes
+INCLUDES    =	./includes
 SRCS		=	ft_strlen.c			\
 				ft_atoi.c 			\
 				ft_putstr.c 		\
@@ -95,9 +95,8 @@ OK			=	$(C_OK)OK$(C_NO)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rc $@ $^
+	@ar rcs $@ $^
 	@ranlib $@
-	@echo "Compiling & indexing" [ $(NAME) ] $(SUCCESS)
 
 %.o: %.c $(INCLUDES)/libft.h
 	@$(CC) -c -o $@ $< -I $(INCLUDES)
@@ -105,7 +104,7 @@ $(NAME): $(OBJS)
 	
 clean:
 	@rm -f $(OBJS)
-	@echo "Cleaning" [ $(NAME) ] "..." $(OK)
+	@echo "Cleaning libft objs" $(OK)
 
 fclean: clean
 	@rm -f $(NAME)

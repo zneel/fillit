@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:16:11 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/27 13:31:01 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:07:20 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		ft_check(t_tris *current, char **map, int map_len, t_point *xy)
 				|| xy->x + current->xy[i][1] >= map_len
 				|| xy->y + current->xy[i][0] >= map_len)
 			return (FALSE);
-		if (map[xy->y + current->xy[i][0]][xy->x + current->xy[i][1]] != '.')
+		if (map[xy->y + current->xy[i][0]][xy->x + current->xy[i][1]] !=
+				CHAR_EMPTY)
 			return (FALSE);
 		++i;
 	}
@@ -54,7 +55,7 @@ char	**ft_insert_piece(t_tris *current, char **map, t_point *xy)
 	i = 0;
 	while (i < 4)
 	{
-		map[xy->y + current->xy[i][0]][xy->x + current->xy[i][1]] = (char)
+		map[xy->y + current->xy[i][0]][xy->x + current->xy[i][1]] =
 			current->symbol;
 		++i;
 	}

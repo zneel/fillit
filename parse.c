@@ -6,7 +6,7 @@
 /*   By: srequiem <srequiem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:30:39 by ebouvier          #+#    #+#             */
-/*   Updated: 2018/04/27 13:31:36 by ebouvier         ###   ########.fr       */
+/*   Updated: 2018/05/07 16:16:20 by ebouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,15 @@
 
 void	ft_tetris_valid(char *buff)
 {
-	register size_t	i;
-	register size_t	hash_count;
-
-	i = 0;
-	hash_count = 0;
-	while (buff[i])
-	{
-		if (buff[i] == CHAR_TTRIS)
-		{
-			if (buff[i + 1] != CHAR_TTRIS && buff[i - 1] != CHAR_TTRIS &&
-					buff[i + 5] != CHAR_TTRIS && buff[i - 5] != CHAR_TTRIS)
-				ft_exit_invalid_piece();
-		}
-		if (buff[i] == CHAR_TTRIS)
-			++hash_count;
-		if (buff[i] != CHAR_SEP && buff[i] != CHAR_TTRIS &&
-				buff[i] != CHAR_EMPTY)
-			ft_exit_invalid_piece();
-		if (i % 5 == 4 && buff[i] != '\n')
-			ft_exit_invalid_piece();
-		++i;
-	}
-	if (hash_count != 4)
+	if (check_lines(buff) != TRUE)
+		ft_exit_invalid_piece();
+	if (check_chars(buff) != TRUE)
+		ft_exit_invalid_piece();
+	if (check_contigous(buff) != TRUE)
+		ft_exit_invalid_piece();
+	if (check_hash_count(buff) != TRUE)
+		ft_exit_invalid_piece();
+	if (count_empty(buff) != TRUE)
 		ft_exit_invalid_piece();
 }
 
@@ -108,19 +94,25 @@ void	ft_reformat_coords(int (*xy)[4][2])
 t_tris	*ft_read(int fd)
 {
 	ssize_t				bytes;
+	int					i;
 	char				buff[BUFF_SIZE];
 	t_tris				*head;
 	register uint8_t	symbol;
 
 	head = NULL;
 	symbol = 'A';
+	i = 0;
 	while ((bytes = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[bytes] = '\0';
 		ft_tetris_valid(buff);
+		if (bytes == 20)
+			++i;
 		if (symbol > 'Z')
 			ft_exit_error();
 		ft_push_tetris(buff, &head, symbol++);
 	}
+	if (i != 1)
+		ft_exit_invalid_piece();
 	return (head);
 }
