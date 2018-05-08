@@ -6,7 +6,7 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/12 17:33:40 by ebouvier          #+#    #+#              #
-#    Updated: 2018/05/07 13:45:47 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/05/08 11:49:17 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRC_BASE		=	main.c			\
 					map.c			\
 					parse_helpers.c
 
-SRCS			=	$(SRC_BASE)
 OBJS			=	$(SRC_BASE:.c=.o)
 
 C_NO			=	"\033[00m"
