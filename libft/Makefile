@@ -6,14 +6,13 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/23 18:49:32 by ebouvier          #+#    #+#              #
-#    Updated: 2018/04/15 16:37:26 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/05/10 12:31:45 by ebouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-INCLUDES=	./includes
 SRCS		=	ft_strlen.c			\
 				ft_atoi.c 			\
 				ft_putstr.c 		\
@@ -84,28 +83,19 @@ SRCS		=	ft_strlen.c			\
 				ft_sqrt.c
 OBJS		= $(SRCS:.c=.o)
 
-C_NO		=	"\033[00m"
-C_OK		=	"\033[35m"
-C_GOOD		=	"\033[32m"
-C_ERROR		=	"\033[31m"
-C_WARN		=	"\033[33m"
-SUCCESS		=	$(C_GOOD)SUCCESS$(C_NO)
-OK			=	$(C_OK)OK$(C_NO)
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rc $@ $^
+	@ar rcs $@ $^
 	@ranlib $@
-	@echo "Compiling & indexing" [ $(NAME) ] $(SUCCESS)
 
-%.o: %.c $(INCLUDES)/libft.h
-	@$(CC) -c -o $@ $< -I $(INCLUDES)
-	@echo "Linking" [ $< ] $(OK)
+%.o: %.c libft.h
+	@$(CC) -c -o $@ $<
+	@echo "Linking" [ $< ]
 	
 clean:
 	@rm -f $(OBJS)
-	@echo "Cleaning" [ $(NAME) ] "..." $(OK)
+	@echo "Cleaning libft objs"
 
 fclean: clean
 	@rm -f $(NAME)
