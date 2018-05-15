@@ -6,7 +6,7 @@
 #    By: ebouvier <ebouvier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/23 18:49:32 by ebouvier          #+#    #+#              #
-#    Updated: 2018/05/10 12:31:45 by ebouvier         ###   ########.fr        #
+#    Updated: 2018/05/15 14:36:01 by srequiem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $@ $^
-	@ranlib $@
 
 %.o: %.c libft.h
 	@$(CC) -c -o $@ $<
